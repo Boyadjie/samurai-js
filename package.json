@@ -1,0 +1,19 @@
+{
+  "name": "samurai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --sourcemap=none --watch ./style/main.scss:./style/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Boyadjie/samurai-js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Boyadjie/samurai-js/issues"
+  },
+  "homepage": "https://github.com/Boyadjie/samurai-js#readme"
+}
