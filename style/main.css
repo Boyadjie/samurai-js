@@ -38,6 +38,15 @@ body #main #gameArea .row .cell {
   height: 84px;
   background: rgba(255, 0, 0, 0.459);
 }
+body #main #gameArea .row .cell.tree {
+  background: Blue;
+}
+body #main #gameArea .row .cell.rock {
+  background: grey;
+}
+body #main #gameArea .row .cell.floor {
+  background: orange;
+}
 body #main .player {
   background: transparent;
   width: 300px;
