@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "sass": "sass --sourcemap=none --watch ./style/main.scss:./style/style.css"
+    "sass": "sass --watch ./style/main.scss:./style/main.css"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,5 @@
   "bugs": {
     "url": "https://github.com/Boyadjie/samurai-js/issues"
   },
-  "homepage": "https://github.com/Boyadjie/samurai-js#readme"
+  "homepage": "https://github.com/Boyadjie/samurai-js/index.html"
 }
