@@ -18,9 +18,6 @@ body {
 
     #gameArea {
       outline: 5px solid black;
-      background: url('./../img/stone-floor.jpg');
-      background-size: 100%;
-      background-repeat: repeat;
       height: 100%;
       width: 750px;
       display: flex;
@@ -39,15 +36,21 @@ body {
           background: rgba(255, 0, 0, 0.459);
 
           &.tree {
-            background: Blue;
+            background: url('./../img/tree.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
           }
 
           &.rock {
-            background: grey;
+            background: url('./../img/rock.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
           }
 
           &.floor {
-            background: orange;
+            background: url('./../img/grass.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
           }
         }
       }
