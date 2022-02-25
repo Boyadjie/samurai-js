@@ -15,7 +15,7 @@ $(document).ready(function(){
     $('#gameArea').html(arena);
   }
   
-  function atributeRandomClass() {
+  function setFieldClass() {
     let cells = $('.cell');
   
     // Generate 3 trees
@@ -47,15 +47,16 @@ $(document).ready(function(){
         cell.addClass("floor");
       }
     }
-    
-    // console.log(cells);
   }
   
   // End Functions
   // ---------------------
   
   createArena();
-  atributeRandomClass();
+  setFieldClass();
 
+  // Tests
+  let test = 4;
+  console.log(Number.isInteger(test));
 });
   

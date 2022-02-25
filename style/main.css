@@ -3,57 +3,91 @@ body {
   background: url("./../img/background.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 body #main {
   outline: 5px solid black;
   border-radius: 25px;
-  height: 750px;
-  width: 1400px;
+  height: 650px;
+  width: 1200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 body #main #gameArea {
   outline: 5px solid black;
   height: 100%;
-  width: 750px;
+  width: 650px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
+
 body #main #gameArea .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
+
 body #main #gameArea .row .cell {
-  width: 84px;
-  height: 84px;
+  width: 73px;
+  height: 73px;
   background: rgba(255, 0, 0, 0.459);
 }
+
 body #main #gameArea .row .cell.tree {
   background: url("./../img/tree.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
+
 body #main #gameArea .row .cell.rock {
   background: url("./../img/rock.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
+
 body #main #gameArea .row .cell.floor {
   background: url("./../img/grass.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
+
 body #main .player {
   background: transparent;
   width: 300px;
   height: 100%;
 }
-
 /*# sourceMappingURL=main.css.map */
