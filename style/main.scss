@@ -9,7 +9,7 @@ body {
 
   #main {
     outline: 5px solid black;
-    border-radius: 25px;
+    border-radius: 10px;
     height: 650px;
     width: 1200px;
     display: flex;
@@ -57,9 +57,59 @@ body {
     }
 
     .player {
-      background: transparent;
+      background: url('./../img/paper.jpeg');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
       width: 300px;
       height: 100%;
+      overflow: hidden;
+    }
+  }
+
+  .home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      font-size: 5em;
+    }
+
+    .params-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 200px;
+
+      .hide {
+        display: none;
+      }
+
+      label > img {
+        &:hover {
+          cursor: pointer;
+        }
+      } 
+
+      #noukon-l:checked ~ .noukon-l-img img {
+        border: 2px solid red;
+      }
+      #noukon-r:checked ~ .noukon-r-img img {
+        border: 2px solid red;
+      }
+
+      #akai-l:checked ~ .akai-l-img img {
+        border: 2px solid blue;
+      }
+      #akai-r:checked ~ .akai-r-img img {
+        border: 2px solid blue;
+      }
+    }
+
+    .play-btn {
+      margin-top: 50px;
+      padding: 5px 20px;
     }
   }
 }

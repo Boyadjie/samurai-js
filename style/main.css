@@ -16,7 +16,7 @@ body {
 
 body #main {
   outline: 5px solid black;
-  border-radius: 25px;
+  border-radius: 10px;
   height: 650px;
   width: 1200px;
   display: -webkit-box;
@@ -86,8 +86,73 @@ body #main #gameArea .row .cell.floor {
 }
 
 body #main .player {
-  background: transparent;
+  background: url("./../img/paper.jpeg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   width: 300px;
   height: 100%;
+  overflow: hidden;
+}
+
+body .home {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body .home h1 {
+  font-size: 5em;
+}
+
+body .home .params-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 200px;
+}
+
+body .home .params-container .hide {
+  display: none;
+}
+
+body .home .params-container label > img:hover {
+  cursor: pointer;
+}
+
+body .home .params-container #noukon-l:checked ~ .noukon-l-img img {
+  border: 2px solid red;
+}
+
+body .home .params-container #noukon-r:checked ~ .noukon-r-img img {
+  border: 2px solid red;
+}
+
+body .home .params-container #akai-l:checked ~ .akai-l-img img {
+  border: 2px solid blue;
+}
+
+body .home .params-container #akai-r:checked ~ .akai-r-img img {
+  border: 2px solid blue;
+}
+
+body .home .play-btn {
+  margin-top: 50px;
+  padding: 5px 20px;
 }
 /*# sourceMappingURL=main.css.map */

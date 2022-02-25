@@ -1,10 +1,10 @@
   class Player {
-    constructor(pseudo) {
-      this.pseudo = pseudo;
+    constructor(gametag) {
+      this.gametag = gametag;
     }
 
-    setPseudo(newPseudo) {
-      this.pseudo = newPseudo;
+    setgametag(newgametag) {
+      this.gametag = newgametag;
     }
 
     setFighter(fighter) {
