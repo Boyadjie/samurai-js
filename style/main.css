@@ -133,10 +133,13 @@ body .home .params-container .params .fighter-choice {
   display: flex;
 }
 
+body .home .params-container .params .fighter-choice input[type=radio] {
+  display: none;
+}
+
 body .home .params-container .params .fighter-choice .selected img {
   background-color: blue;
   border-radius: 25px;
-  border: 2px solid red;
 }
 
 body .home .params-container .params .fighter-choice label > img:hover {
