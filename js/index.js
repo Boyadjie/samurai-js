@@ -17,11 +17,39 @@ $(document).ready(function(){
     });
   }
 
+  function setParams() {
+    let fighters = $('.fighter-choice input:checked');
+    let names = $('.params .name .gametag');
+
+    if(fighters.length != 0 && names[0].value != '' && names[1].value != '') {
+      let playerOne = {
+        name: names[0].value,
+        fighter: fighters[0].id
+      };
+
+      let playerTwo = {
+        name: names[1].value,
+        fighter: fighters[1].id
+      };
+
+      let params = [playerOne, playerTwo];
+
+      localStorage.setItem('playersParams', JSON.stringify(params));
+      return true;
+    }else {
+      return false;
+    }
+  }
+
   function play() {
     $('.play-btn').on('click', function() {
-      let choosed = $('.fighter-choice input:checked')
-      console.log(choosed);
-      window.location.href = "/game.html";
+      if(setParams() === true) {
+        setParams();
+        window.location.href = "/game.html";
+      }else {
+        alert('You need to choose a name and a fighter !');
+      }
+      
     });
   }
   
