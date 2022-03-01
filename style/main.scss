@@ -82,29 +82,28 @@ body {
       align-items: center;
       gap: 200px;
 
-      .hide {
-        display: none;
-      }
+      .params {
+        .fighter-choice {
+          display: flex;
 
-      label > img {
-        &:hover {
-          cursor: pointer;
+          input[type=radio] {
+            // display: none;
+          }
+    
+          .selected img {
+            background-color: blue;
+            border-radius: 25px;
+            border: 2px solid red;
+          }
+    
+          label > img {
+            &:hover {
+              cursor: pointer;
+            }
+          }
         }
-      } 
-
-      #noukon-l:checked ~ .noukon-l-img img {
-        border: 2px solid red;
-      }
-      #noukon-r:checked ~ .noukon-r-img img {
-        border: 2px solid red;
       }
 
-      #akai-l:checked ~ .akai-l-img img {
-        border: 2px solid blue;
-      }
-      #akai-r:checked ~ .akai-r-img img {
-        border: 2px solid blue;
-      }
     }
 
     .play-btn {

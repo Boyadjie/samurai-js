@@ -56,7 +56,7 @@ $(document).ready(function(){
   setFieldClass();
 
   // Tests
-  let test = 4;
-  console.log(Number.isInteger(test));
+  let choosed = $('.fighter-choice input:checked')
+  console.log(choosed);
 });
   

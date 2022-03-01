@@ -17,38 +17,49 @@
     <div class="params-container">
       <div class="params" id="player-one">
         <h2>Player 1</h2>
-        <div>
-          <label for="gametag">Choose a name :</label>
-          <input type="text" name="gametag" id="gametag" placeholder="Type your gametag here...">
+        <div class="name">
+          <label for="name-one">Choose a name :</label>
+          <input type="text" name="name-one" id="name-one" placeholder="Type your gametag here...">
         </div>
     
-        <div>
-          <label class="noukon-l-img" for="noukon-l"><img src="./img/Noukon.png" alt="Picture of Noukon"></label>
-          <input type="radio" name="fighter1" id="noukon-l" class="hide">
-    
-          <label class="akai-l-img" for="akai-l"><img src="./img/Akai.png" alt="Picture of Akai"></label>
-          <input type="radio" name="fighter1" id="akai-l" class="hide">
+        <div class="fighter-choice">
+          <div>
+            <label class="noukon-l-img selected" for="noukon-l"><img src="./img/Noukon.png" alt="Picture of Noukon"></label>
+            <input type="radio" name="fighter1" id="noukon-l">
+          </div>
+          
+          <div>
+            <label class="akai-l-img" for="akai-l"><img src="./img/Akai.png" alt="Picture of Akai"></label>
+            <input type="radio" name="fighter1" id="akai-l">
+          </div>
         </div>
       </div>
     
       <div class="params" id="player-two">
         <h2>Player 2</h2>
-        <div>
-          <label for="gametag">Choose a name :</label>
-          <input type="text" name="gametag" id="gametag" placeholder="Type your gametag here...">
+        <div class="name">
+          <label for="name-two">Choose a name :</label>
+          <input type="text" name="name-two" id="name-two" placeholder="Type your gametag here...">
         </div>
     
-        <div>
-          <label class="noukon-r-img" for="noukon-r"><img src="./img/Noukon-R.png" alt="Picture of Noukon"></label>
-          <input type="radio" name="fighter2" id="noukon-r" class="hide">
-    
-          <label class="akai-r-img" for="akai-r"><img src="./img/Akai-R.png" alt="Picture of Akai"></label>
-          <input type="radio" name="fighter2" id="akai-r" class="hide">
+        <div class="fighter-choice">
+          <div>
+            <label class="noukon-r-img selected" for="noukon-r"><img src="./img/Noukon-R.png" alt="Picture of Noukon"></label>
+            <input type="radio" name="fighter2" id="noukon-r">
+          </div> 
+
+          <div>
+            <label class="akai-r-img" for="akai-r"><img src="./img/Akai-R.png" alt="Picture of Akai"></label>
+            <input type="radio" name="fighter2" id="akai-r">
+          </div>
         </div>
       </div>
     </div>
   
     <input type="button" value="Jouer" class="play-btn">
   </div>
+
+  <script src="./js/index.js"></script>
+  <script src="./js/class/class.js"></script>
 </body>
 </html>

@@ -127,28 +127,20 @@ body .home .params-container {
   gap: 200px;
 }
 
-body .home .params-container .hide {
-  display: none;
+body .home .params-container .params .fighter-choice {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
-body .home .params-container label > img:hover {
+body .home .params-container .params .fighter-choice .selected img {
+  background-color: blue;
+  border-radius: 25px;
+  border: 2px solid red;
+}
+
+body .home .params-container .params .fighter-choice label > img:hover {
   cursor: pointer;
-}
-
-body .home .params-container #noukon-l:checked ~ .noukon-l-img img {
-  border: 2px solid red;
-}
-
-body .home .params-container #noukon-r:checked ~ .noukon-r-img img {
-  border: 2px solid red;
-}
-
-body .home .params-container #akai-l:checked ~ .akai-l-img img {
-  border: 2px solid blue;
-}
-
-body .home .params-container #akai-r:checked ~ .akai-r-img img {
-  border: 2px solid blue;
 }
 
 body .home .play-btn {
