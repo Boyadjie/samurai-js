@@ -1,11 +1,65 @@
+@font-face {
+  font-family: "Nigato";
+  src: url(./../fonts/Niagato.ttf) format("truetype");
+ }
+ @font-face {
+  font-family: "Tokyo";
+  src: url(./../fonts/Tokyo.ttf) format("truetype");
+ }
+ @font-face {
+  font-family: "TokyoB";
+  src: url(./../fonts/TokyoBold.ttf) format("truetype");
+ }
+
 body {
+  position: relative;
   height: 100vh;
-  background: url('./../img/background.jpeg');
-  background-size: cover;
-  background-repeat: no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Nigato";
+  font-size: 10px;
+
+  &.game {
+    background: url('./../img/japan_back.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  #back-btn {
+    position: absolute;
+    top: 10px;
+    left: 30px;
+
+    a {
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-decoration: none;
+      color: black;
+      position: relative;
+      padding-left: 40px;
+
+      &:hover {
+        &::before {
+          left: 0;
+        }
+      }
+  
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 10px;
+        background: url(./../img/arrow.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
 
   #main {
     outline: 5px solid black;
@@ -24,6 +78,7 @@ body {
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      z-index: 1000;
 
       .row {
         display: flex;
@@ -63,52 +118,105 @@ body {
       width: 300px;
       height: 100%;
       overflow: hidden;
+      padding: 0 10px;
     }
   }
 
-  .home {
+  &.home {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: url('./../img/japan_back.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
 
     h1 {
-      font-size: 5em;
+      font-size: 5rem;
+      font-family: "TokyoB";
+      margin: 1rem;
     }
 
-    .params-container {
+    .container {
+      background: white;
+      padding: 20px 40px;
+      border-radius: 25px;
+      box-shadow: 0px 0px 15px rgb(122, 122, 122);
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      gap: 200px;
 
-      .params {
-        .fighter-choice {
+      .params-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 200px;
+  
+        .params {
           display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
 
-          input[type=radio] {
-            display: none;
+          h2 {
+            font-size: 3rem;
           }
-    
-          .selected img {
-            background-color: blue;
-            border-radius: 25px;
-            // border: 2px solid red;
+
+          .name {
+            padding: 2rem 0;
+            label {
+              font-size: 1.5rem;
+            }
+
+            input {
+              border: none;
+              border-bottom: 2px solid black;
+              margin-left: 15px;
+              padding: 5px;
+              font-family: "TokyoB";
+              width: 230px;
+              font-size: 1rem;
+            }
           }
-    
-          label > img {
-            &:hover {
-              cursor: pointer;
+
+          .fighter-choice {
+            display: flex;
+  
+            input[type=radio] {
+              display: none;
+            }
+      
+            .selected img {
+              background-color: blue;
+              border-radius: 25px;
+            }
+      
+            label > img {
+              &:hover {
+                cursor: pointer;
+              }
             }
           }
         }
+  
       }
+  
+      .play-btn {
+        margin-top: 50px;
+        padding: 5px 40px;
+        background: white;
+        border: 2px solid black;
+        font-family: "Nigato";
+        font-size: 1.5rem;
+        transition: all 0.3s ease-in-out;
 
+        &:hover {
+          cursor: pointer;
+          transform: rotateZ(-5deg);
+        }
+      }
     }
 
-    .play-btn {
-      margin-top: 50px;
-      padding: 5px 20px;
-    }
   }
 }

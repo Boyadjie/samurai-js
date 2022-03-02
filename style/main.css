@@ -1,8 +1,21 @@
+@font-face {
+  font-family: "Nigato";
+  src: url(./../fonts/Niagato.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Tokyo";
+  src: url(./../fonts/Tokyo.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "TokyoB";
+  src: url(./../fonts/TokyoBold.ttf) format("truetype");
+}
+
 body {
+  position: relative;
   height: 100vh;
-  background: url("./../img/background.jpeg");
-  background-size: cover;
-  background-repeat: no-repeat;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -12,6 +25,48 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  font-family: "Nigato";
+  font-size: 10px;
+}
+
+body.game {
+  background: url("./../img/japan_back.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+body #back-btn {
+  position: absolute;
+  top: 10px;
+  left: 30px;
+}
+
+body #back-btn a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  position: relative;
+  padding-left: 40px;
+}
+
+body #back-btn a:hover::before {
+  left: 0;
+}
+
+body #back-btn a::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 10px;
+  background: url(./../img/arrow.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 body #main {
@@ -47,6 +102,7 @@ body #main #gameArea {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  z-index: 1000;
 }
 
 body #main #gameArea .row {
@@ -92,9 +148,40 @@ body #main .player {
   width: 300px;
   height: 100%;
   overflow: hidden;
+  padding: 0 10px;
 }
 
-body .home {
+body.home {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: url("./../img/japan_back.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+body.home h1 {
+  font-size: 5rem;
+  font-family: "TokyoB";
+  margin: 1rem;
+}
+
+body.home .container {
+  background: white;
+  padding: 20px 40px;
+  border-radius: 25px;
+  -webkit-box-shadow: 0px 0px 15px #7a7a7a;
+          box-shadow: 0px 0px 15px #7a7a7a;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -110,11 +197,7 @@ body .home {
           align-items: center;
 }
 
-body .home h1 {
-  font-size: 5em;
-}
-
-body .home .params-container {
+body.home .container .params-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -127,27 +210,77 @@ body .home .params-container {
   gap: 200px;
 }
 
-body .home .params-container .params .fighter-choice {
+body.home .container .params-container .params {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body.home .container .params-container .params h2 {
+  font-size: 3rem;
+}
+
+body.home .container .params-container .params .name {
+  padding: 2rem 0;
+}
+
+body.home .container .params-container .params .name label {
+  font-size: 1.5rem;
+}
+
+body.home .container .params-container .params .name input {
+  border: none;
+  border-bottom: 2px solid black;
+  margin-left: 15px;
+  padding: 5px;
+  font-family: "TokyoB";
+  width: 230px;
+  font-size: 1rem;
+}
+
+body.home .container .params-container .params .fighter-choice {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-body .home .params-container .params .fighter-choice input[type=radio] {
+body.home .container .params-container .params .fighter-choice input[type=radio] {
   display: none;
 }
 
-body .home .params-container .params .fighter-choice .selected img {
+body.home .container .params-container .params .fighter-choice .selected img {
   background-color: blue;
   border-radius: 25px;
 }
 
-body .home .params-container .params .fighter-choice label > img:hover {
+body.home .container .params-container .params .fighter-choice label > img:hover {
   cursor: pointer;
 }
 
-body .home .play-btn {
+body.home .container .play-btn {
   margin-top: 50px;
-  padding: 5px 20px;
+  padding: 5px 40px;
+  background: white;
+  border: 2px solid black;
+  font-family: "Nigato";
+  font-size: 1.5rem;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+body.home .container .play-btn:hover {
+  cursor: pointer;
+  -webkit-transform: rotateZ(-5deg);
+          transform: rotateZ(-5deg);
 }
 /*# sourceMappingURL=main.css.map */

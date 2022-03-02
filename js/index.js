@@ -21,7 +21,7 @@ $(document).ready(function(){
     let fighters = $('.fighter-choice input:checked');
     let names = $('.params .name .gametag');
 
-    if(fighters.length != 0 && names[0].value != '' && names[1].value != '') {
+    if(fighters.length == 2 && names[0].value != '' && names[1].value != '') {
       let playerOne = {
         name: names[0].value,
         fighter: fighters[0].id

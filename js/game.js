@@ -48,14 +48,58 @@ $(document).ready(function(){
       }
     }
   }
+
+  function getParams() {
+    if(localStorage.getItem('playersParams') == undefined) {
+      window.location.href = "index.html";
+    }else {
+      let params = JSON.parse(localStorage.getItem('playersParams'));
+
+      let playerOne = ['player1', params[0].name, params[0].fighter];
+      let playerTwo = ['player2', params[1].name, params[1].fighter];
+
+      return [playerOne, playerTwo];
+    }
+  }
+
+  function insertOnePlayer(player, container) {
+    let playerName = player[1];
+    let imageName = player[2];
+    let fighterName = player[2].replace('-l', '').replace('-r', '');
+    container.html(`
+    <div class='fighter'>
+      <div class=''>
+        <img src='./img/${imageName}.png' alt='${fighterName} picture'>
+        <p class'fighter-name'>${fighterName}</p>
+      <div>
+      <div class='infos'>
+        <p class'player-name'>${playerName}</p>
+      </div>
+    </div>`);
+  }
+
+  function insertAllPlayers() {
+    let players = getParams();
+    let playerOneContainer = $('#p-one');
+    let playerTwoContainer = $('#p-two');
+    
+    console.log(players, playerOneContainer, playerTwoContainer);
+
+    insertOnePlayer(players[0], playerOneContainer);
+    insertOnePlayer(players[1], playerTwoContainer);
+  }
+
+  function createGame() {
+    createArena();
+    setFieldClass();
+    insertAllPlayers();
+  }
   
   // End Functions
   // ---------------------
   
-  createArena();
-  setFieldClass();
-  
-  // Tests
+  createGame();
 
+  // Tests
 });
   
