@@ -188,8 +188,7 @@ body {
             }
       
             .selected img {
-              background-color: blue;
-              border-radius: 25px;
+              background: url(./../img/select.png);
             }
       
             label > img {
@@ -213,7 +212,7 @@ body {
 
         &:hover {
           cursor: pointer;
-          transform: rotateZ(-5deg);
+          padding: 5px 50px
         }
       }
     }

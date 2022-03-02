@@ -259,8 +259,7 @@ body.home .container .params-container .params .fighter-choice input[type=radio]
 }
 
 body.home .container .params-container .params .fighter-choice .selected img {
-  background-color: blue;
-  border-radius: 25px;
+  background: url(./../img/select.png);
 }
 
 body.home .container .params-container .params .fighter-choice label > img:hover {
@@ -280,7 +279,6 @@ body.home .container .play-btn {
 
 body.home .container .play-btn:hover {
   cursor: pointer;
-  -webkit-transform: rotateZ(-5deg);
-          transform: rotateZ(-5deg);
+  padding: 5px 50px;
 }
 /*# sourceMappingURL=main.css.map */

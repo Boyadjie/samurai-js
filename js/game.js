@@ -19,7 +19,7 @@ $(document).ready(function(){
     let cells = $('.cell');
   
     // Generate 3 trees
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 5; i++) {
       let randIndex = Math.floor((Math.random() * (cells.length - 1)));
       let treeCell = cells.eq(randIndex);
       if(treeCell.hasClass("tree") == false && treeCell.hasClass("rock") == false) {
@@ -30,7 +30,7 @@ $(document).ready(function(){
     }
 
     // Generate 2 rocks
-    for (let j = 0; j < 2; j++) {
+    for (let j = 0; j < 3; j++) {
       let randIndex = Math.floor((Math.random() * (cells.length - 1)));
       let rockCell = cells.eq(randIndex);
       if(rockCell.hasClass("tree") == false && rockCell.hasClass("rock") == false) {
