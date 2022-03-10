@@ -1,4 +1,4 @@
-  class Sword2 extends Weapon {
+  export default class Sword2 extends Weapon {
     constructor() {
       this.name = 'Two Hand Sword';
       this.apCost = 15;

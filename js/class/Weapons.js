@@ -1,4 +1,4 @@
-  class Weapon {
+  export default class Weapon {
     constructor(name, apCost, damages, speed) {
       if (typeof name != "string" || Number.isInteger(apCost) == false || Number.isInteger(damages) == false) {
         throw new Error("Wrong arguments type set as parameters\n");

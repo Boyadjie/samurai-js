@@ -1,3 +1,6 @@
+import Player from './class/Player.js';
+import Fighter from './class/Fighter.js';
+
 $(document).ready(function(){
   // ---------------------
   // Functions
@@ -62,18 +65,33 @@ $(document).ready(function(){
     }
   }
 
-  function insertOnePlayer(player, container) {
-    let playerName = player[1];
-    let imageName = player[2];
-    let fighterName = player[2].replace('-l', '').replace('-r', '');
+  function createPlayer(playerName) {
+    return new Player(playerName);
+  }
+
+  function createFighter(name, hp, strength){
+    return new Fighter(name, hp, strength);
+  }
+
+  function insertOnePlayer(playerInfos, container) {
+    let playerName = playerInfos[1];
+    let imageName = playerInfos[2];
+    let fighterName = playerInfos[2].replace('-l', '').replace('-r', '');
+
+    let player = createPlayer(playerName);
+    let fighter = createFighter(fighterName, 100, 50);
+    player.setFighter(fighter);
+
     container.html(`
     <div class='fighter'>
-      <div class=''>
+      <div class='card'>
         <img src='./img/${imageName}.png' alt='${fighterName} picture'>
-        <p class'fighter-name'>${fighterName}</p>
-      <div>
+        <p class='fighter-name ${fighterName}'>${fighterName}</p>
+      </div>
       <div class='infos'>
-        <p class'player-name'>${playerName}</p>
+        <p class='player-name'>Player: <span>${playerName}</span></p>
+        <p class='player-hp'>Life points: <span>${fighter.hp} hp</span></p>
+        <p class='player-str'>Strength: <span>${fighter.strength} str</span></p>
       </div>
     </div>`);
   }
@@ -83,7 +101,7 @@ $(document).ready(function(){
     let playerOneContainer = $('#p-one');
     let playerTwoContainer = $('#p-two');
     
-    console.log(players, playerOneContainer, playerTwoContainer);
+    // console.log(players, playerOneContainer, playerTwoContainer);
 
     insertOnePlayer(players[0], playerOneContainer);
     insertOnePlayer(players[1], playerTwoContainer);

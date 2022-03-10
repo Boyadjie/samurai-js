@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@1,400;1,700&display=swap");
 @font-face {
   font-family: "Nigato";
   src: url(./../fonts/Niagato.ttf) format("truetype");
@@ -19,6 +20,10 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -36,9 +41,7 @@ body.game {
 }
 
 body #back-btn {
-  position: absolute;
-  top: 10px;
-  left: 30px;
+  padding-bottom: 1rem;
 }
 
 body #back-btn a {
@@ -149,6 +152,28 @@ body #main .player {
   height: 100%;
   overflow: hidden;
   padding: 0 10px;
+}
+
+body #main .player .fighter .card {
+  border-bottom: 3px solid black;
+}
+
+body #main .player .fighter .card .fighter-name {
+  margin: 0;
+  font-size: 2.5rem;
+  font-family: 'TokyoB';
+  font-weight: bolder;
+  text-align: center;
+}
+
+body #main .player .fighter .infos p {
+  font-size: 1.5rem;
+}
+
+body #main .player .fighter .infos p span {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
 }
 
 body.home {
