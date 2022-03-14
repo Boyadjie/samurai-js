@@ -17,11 +17,35 @@ $(document).ready(function(){
     }
     $('#gameArea').html(arena);
   }
+
+  function checkPosition(first, second, array) {
+    // second need to be different from : first, first-9, first+9, first-1, first+1...
+    let deadZone = [first, first-1, first-8, first-9, first-10, first+1, first+8, first+9, first+10];
+
+    for(let i = 0; i < deadZone.length; i++) {
+      let cell = deadZone[i];
+      console.log(cell, second);
+      if(cell == second) {
+        second = Math.floor((Math.random() * (array.length - 1)));
+        checkPosition(first, second, array);
+      }
+    }
+    
+    return [first, second];
+  }
+
+  function checkClass(element) {
+    if(element.hasClass("tree") == false && element.hasClass("rock") == false && element.hasClass("fighter") == false) {
+      return element
+    }else {
+      return false;
+    }
+  }
   
   function setFieldClass() {
     let cells = $('.cell');
   
-    // Generate 3 trees
+    // Generate 5 trees
     for (let i = 0; i < 5; i++) {
       let randIndex = Math.floor((Math.random() * (cells.length - 1)));
       let treeCell = cells.eq(randIndex);
@@ -32,7 +56,7 @@ $(document).ready(function(){
       }
     }
 
-    // Generate 2 rocks
+    // Generate 3 rocks
     for (let j = 0; j < 3; j++) {
       let randIndex = Math.floor((Math.random() * (cells.length - 1)));
       let rockCell = cells.eq(randIndex);
@@ -65,8 +89,8 @@ $(document).ready(function(){
     }
   }
 
-  function createPlayer(playerName) {
-    return new Player(playerName);
+  function createPlayer(playerName, side) {
+    return new Player(playerName, side);
   }
 
   function createFighter(name, hp, strength){
@@ -77,13 +101,16 @@ $(document).ready(function(){
     let playerName = playerInfos[1];
     let imageName = playerInfos[2];
     let fighterName = playerInfos[2].replace('-l', '').replace('-r', '');
+    let side = playerInfos[2].replace('noukon-', '').replace('akai-', '');
 
-    let player = createPlayer(playerName);
+    let player = createPlayer(playerName, side);
     let fighter = createFighter(fighterName, 100, 50);
     player.setFighter(fighter);
 
+    // console.log(player);
+
     container.html(`
-    <div class='fighter'>
+    <div class='fighter-infos'>
       <div class='card'>
         <img src='./img/${imageName}.png' alt='${fighterName} picture'>
         <p class='fighter-name ${fighterName}'>${fighterName}</p>
@@ -94,6 +121,8 @@ $(document).ready(function(){
         <p class='player-str'>Strength: <span>${fighter.strength} str</span></p>
       </div>
     </div>`);
+
+    return player;
   }
 
   function insertAllPlayers() {
@@ -103,14 +132,51 @@ $(document).ready(function(){
     
     // console.log(players, playerOneContainer, playerTwoContainer);
 
-    insertOnePlayer(players[0], playerOneContainer);
-    insertOnePlayer(players[1], playerTwoContainer);
+    let playerOne = insertOnePlayer(players[0], playerOneContainer);
+    let playerTwo = insertOnePlayer(players[1], playerTwoContainer);
+
+    return [playerOne, playerTwo];
+  }
+
+  function setFightersOnField(players) {
+    let cells = $('.cell');
+    let index = [];
+
+    // get 2 random index
+    for (let i = 0; i < 2; i++) {
+      let randIndex = Math.floor((Math.random() * (cells.length - 1)));
+      let cell = cells.eq(randIndex);
+
+      while(checkClass(cell) == false) {
+        randIndex = Math.floor((Math.random() * (cells.length - 1)));
+        cell = cells.eq(randIndex);
+      }
+
+      index.push(randIndex);
+    }
+
+    let positions = checkPosition(index[0], index[1], cells);
+    for (let i = 0; i < positions.length; i++) {
+      let position = positions[i];
+      let fighterCell = jQuery(cells.eq(position)[0]);
+      let fighterImgClass = `${players[i].fighter.name}-${players[i].side}`;
+      fighterCell.addClass(`fighter ${fighterImgClass}`);
+
+      let test = cells.eq(position);
+
+      console.log(test);
+    }
+    console.log(positions);
+
+    console.log(players);
   }
 
   function createGame() {
     createArena();
     setFieldClass();
-    insertAllPlayers();
+
+    let players = insertAllPlayers();
+    setFightersOnField(players);
   }
   
   // End Functions

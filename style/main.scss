@@ -107,6 +107,32 @@ body {
             background-size: cover;
             background-repeat: no-repeat;
           }
+
+          &.noukon {
+            &-l {
+              background: url(./../img/noukon-l.png), url('./../img/grass.jpg');
+              background-size: cover;
+              background-repeat: no-repeat;
+            }
+            &-r {
+              background: url(./../img/noukon-r.png), url('./../img/grass.jpg');
+              background-size: cover;
+              background-repeat: no-repeat;
+            }
+          }
+
+          &.akai {
+            &-l {
+              background: url(./../img/akai-l.png), url('./../img/grass.jpg');
+              background-size: cover;
+              background-repeat: no-repeat;
+            }
+            &-r {
+              background: url(./../img/akai-r.png), url('./../img/grass.jpg');
+              background-size: cover;
+              background-repeat: no-repeat;
+            }
+          }
         }
       }
     }
@@ -120,7 +146,7 @@ body {
       overflow: hidden;
       padding: 0 10px;
 
-      .fighter {
+      .fighter-infos {
         .card {
           border-bottom: 3px solid black;
 
@@ -187,6 +213,7 @@ body {
 
           h2 {
             font-size: 3rem;
+            margin: 0;
           }
 
           .name {
@@ -228,7 +255,7 @@ body {
       }
   
       .play-btn {
-        margin-top: 50px;
+        margin-top: 25px;
         padding: 5px 40px;
         background: white;
         border: 2px solid black;

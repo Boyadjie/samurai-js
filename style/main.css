@@ -144,6 +144,30 @@ body #main #gameArea .row .cell.floor {
   background-repeat: no-repeat;
 }
 
+body #main #gameArea .row .cell.noukon-l {
+  background: url(./../img/noukon-l.png), url("./../img/grass.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+body #main #gameArea .row .cell.noukon-r {
+  background: url(./../img/noukon-r.png), url("./../img/grass.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+body #main #gameArea .row .cell.akai-l {
+  background: url(./../img/akai-l.png), url("./../img/grass.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+body #main #gameArea .row .cell.akai-r {
+  background: url(./../img/akai-r.png), url("./../img/grass.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 body #main .player {
   background: url("./../img/paper.jpeg");
   background-size: 100% 100%;
@@ -154,11 +178,11 @@ body #main .player {
   padding: 0 10px;
 }
 
-body #main .player .fighter .card {
+body #main .player .fighter-infos .card {
   border-bottom: 3px solid black;
 }
 
-body #main .player .fighter .card .fighter-name {
+body #main .player .fighter-infos .card .fighter-name {
   margin: 0;
   font-size: 2.5rem;
   font-family: 'TokyoB';
@@ -166,11 +190,11 @@ body #main .player .fighter .card .fighter-name {
   text-align: center;
 }
 
-body #main .player .fighter .infos p {
+body #main .player .fighter-infos .infos p {
   font-size: 1.5rem;
 }
 
-body #main .player .fighter .infos p span {
+body #main .player .fighter-infos .infos p span {
   font-family: 'Noto Sans', sans-serif;
   font-size: 1.2rem;
   margin-left: 0.5rem;
@@ -253,6 +277,7 @@ body.home .container .params-container .params {
 
 body.home .container .params-container .params h2 {
   font-size: 3rem;
+  margin: 0;
 }
 
 body.home .container .params-container .params .name {
@@ -292,7 +317,7 @@ body.home .container .params-container .params .fighter-choice label > img:hover
 }
 
 body.home .container .play-btn {
-  margin-top: 50px;
+  margin-top: 25px;
   padding: 5px 40px;
   background: white;
   border: 2px solid black;
