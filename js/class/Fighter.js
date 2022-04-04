@@ -20,6 +20,14 @@
       }
     }
 
+    setPosition(position) {
+      if(typeof position == 'number' && position >= 0 && position <= 80) {
+        this.position = position;
+      }else {
+        throw new Error("This isn't an valid position\n");
+      }
+    }
+
     // Methods
     attack(target) {
       if (this.hp > 0) {

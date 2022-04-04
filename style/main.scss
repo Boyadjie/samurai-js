@@ -29,7 +29,9 @@ body {
   }
 
   #back-btn {
-    padding-bottom: 1rem;
+    position: absolute;
+    left: 30px;
+    top: 40px;
 
     a {
       font-size: 1.5rem;
@@ -108,31 +110,66 @@ body {
             background-repeat: no-repeat;
           }
 
-          &.noukon {
-            &-l {
-              background: url(./../img/fighters/noukon-l.png), url('./../img/env/grass.jpg');
-              background-size: cover;
-              background-repeat: no-repeat;
-            }
-            &-r {
-              background: url(./../img/fighters/noukon-r.png), url('./../img/env/grass.jpg');
-              background-size: cover;
-              background-repeat: no-repeat;
+          &.go-to {
+            position: relative;
+
+            &::after {
+              content: '';
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              top: 0;
+              left: 0;
+              background-color: rgba(255, 0, 0, 0.4);
             }
           }
 
-          &.akai {
-            &-l {
-              background: url(./../img/fighters/akai-l.png), url('./../img/env/grass.jpg');
-              background-size: cover;
-              background-repeat: no-repeat;
+          &.fighter {
+            &.move {
+              position: relative;
+
+              &::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background-color: rgba(0, 0, 255, 0.4);
+              }
             }
-            &-r {
-              background: url(./../img/fighters/akai-r.png), url('./../img/env/grass.jpg');
-              background-size: cover;
-              background-repeat: no-repeat;
+
+            &:hover {
+              cursor: pointer;
+            }
+
+            &.noukon {
+              &-l {
+                background: url(./../img/fighters/noukon-l.png), url('./../img/env/grass.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+              }
+              &-r {
+                background: url(./../img/fighters/noukon-r.png), url('./../img/env/grass.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+              }
+            }
+  
+            &.akai {
+              &-l {
+                background: url(./../img/fighters/akai-l.png), url('./../img/env/grass.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+              }
+              &-r {
+                background: url(./../img/fighters/akai-r.png), url('./../img/env/grass.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+              }
             }
           }
+
 
           &.weapon {
             &.katana {

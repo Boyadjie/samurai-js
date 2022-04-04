@@ -27,7 +27,9 @@ body.game {
   background-repeat: no-repeat;
 }
 body #back-btn {
-  padding-bottom: 1rem;
+  position: absolute;
+  left: 30px;
+  top: 40px;
 }
 body #back-btn a {
   font-size: 1.5rem;
@@ -97,22 +99,49 @@ body #main #gameArea .row .cell.floor {
   background-size: cover;
   background-repeat: no-repeat;
 }
-body #main #gameArea .row .cell.noukon-l {
+body #main #gameArea .row .cell.go-to {
+  position: relative;
+}
+body #main #gameArea .row .cell.go-to::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 0, 0, 0.4);
+}
+body #main #gameArea .row .cell.fighter.move {
+  position: relative;
+}
+body #main #gameArea .row .cell.fighter.move::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 255, 0.4);
+}
+body #main #gameArea .row .cell.fighter:hover {
+  cursor: pointer;
+}
+body #main #gameArea .row .cell.fighter.noukon-l {
   background: url(./../img/fighters/noukon-l.png), url("./../img/env/grass.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
-body #main #gameArea .row .cell.noukon-r {
+body #main #gameArea .row .cell.fighter.noukon-r {
   background: url(./../img/fighters/noukon-r.png), url("./../img/env/grass.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
-body #main #gameArea .row .cell.akai-l {
+body #main #gameArea .row .cell.fighter.akai-l {
   background: url(./../img/fighters/akai-l.png), url("./../img/env/grass.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
-body #main #gameArea .row .cell.akai-r {
+body #main #gameArea .row .cell.fighter.akai-r {
   background: url(./../img/fighters/akai-r.png), url("./../img/env/grass.jpg");
   background-size: cover;
   background-repeat: no-repeat;

@@ -127,7 +127,7 @@ $(document).ready(function(){
 
     let playerOne = insertOnePlayer(players[0], playerOneContainer);
     let playerTwo = insertOnePlayer(players[1], playerTwoContainer);
-
+    
     return [playerOne, playerTwo];
   }
 
@@ -178,6 +178,8 @@ $(document).ready(function(){
       let fighterCell = jQuery(cells.eq(position)[0]);
       let fighterImgClass = `${players[i].fighter.name}-${players[i].side}`;
 
+      players[i].fighter.setPosition(position);
+
       fighterCell.addClass(`fighter ${fighterImgClass}`);
     }
   }
@@ -187,21 +189,83 @@ $(document).ready(function(){
     let cells = $('.cell');
     let weaponsParams = [];
 
-    for(const e of Object.entries(weapons)) {
-      let params = [];
+    for(const weapon of Object.entries(weapons)) {
       let cellIndex = checkCellIndex(cells);
       let weaponCell = jQuery(cells.eq(cellIndex));
-      let weaponClass = e[0];
+      let weaponClass = weapon[0];
 
       weaponCell.addClass(`weapon ${weaponClass}`);
-      params['id'] = cellIndex;
-      params['title'] = weaponClass;
-      params['obj'] = e[1];
+      weapon[1].setPosition(cellIndex);
 
-      weaponsParams.push(params);
+      weaponsParams[weaponClass] = weapon[1];
     };
 
     return weaponsParams;
+  }
+
+  // Movement ---------------------------------------------------------------------------------------
+  function getMovePosiotions(position) {
+    let cells = $('.cell');
+
+    let left = [];
+    let right = []; 
+    let top = []; 
+    let bottom = [];
+
+    for (let i = 0; i < 80; i = i+9) {
+      left.push(jQuery(cells.eq(i)));
+    }
+    for (let j = 8; j < 80; j = j+9) {
+      right.push(jQuery(cells.eq(j)));
+    }
+    for (let k = 0; k < 8; k++) {
+      top.push(jQuery(cells.eq(k)));
+    }
+    for (let l = 72; l < 80; l++) {
+      bottom.push(jQuery(cells.eq(l)));
+    }
+
+    if(left.indexOf(position) != -1) {
+      return ['all but left'];
+    }else if(right.indexOf(position) != -1) {
+      return ['all but right'];
+    }else if(top.indexOf(position) != -1) {
+      return ['all but top'];
+    }else if(bottom.indexOf(position) != -1) {
+      return ['all but bottom'];
+    }else {
+      return [position+1, position+2, position-1, position-2, position+9, position+18, position-9, position-18];
+    }
+  }
+
+  function enableMovement(player) {
+    let cells = $('.cell');
+    let fighter = player.fighter;
+    let fighterCell = jQuery(cells.eq(fighter.position));
+
+    let movePositions = getMovePosiotions(fighter.position);
+    let moveCells = [];
+
+    for(const position of movePositions) {
+      moveCells.push(jQuery(cells.eq(position)));
+    }
+
+    fighterCell.on('click', (e) => {
+      console.log('coucou');
+      const myPlayer = jQuery(e.currentTarget);
+
+      if(myPlayer.hasClass('move')) {
+        myPlayer.removeClass('move');
+        moveCells.forEach((e) => {
+          e.removeClass('go-to');
+        });
+      }else {
+        myPlayer.addClass('move');
+        moveCells.forEach((e) => {
+          e.addClass('go-to');
+        });
+      }
+    });
   }
 
   // Game generation ---------------------------------------------------------------------------------------
@@ -211,7 +275,12 @@ $(document).ready(function(){
 
     let players = insertAllPlayers();
     setFightersOnField(players);
+    let playerOne = players[0];
+    let playerTwo = players[1];
+
     let weapons = setWeaponsOnField();
+
+    enableMovement(playerOne);
   }
   
   // End Functions
