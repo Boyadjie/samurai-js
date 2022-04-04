@@ -107,7 +107,7 @@ $(document).ready(function(){
     container.html(`
     <div class='fighter-infos'>
       <div class='card'>
-        <img src='./img/${imageName}.png' alt='${fighterName} picture'>
+        <img src='./img/fighters/${imageName}.png' alt='${fighterName} picture'>
         <p class='fighter-name ${fighterName}'>${fighterName}</p>
       </div>
       <div class='infos'>
@@ -201,7 +201,7 @@ $(document).ready(function(){
       weaponsParams.push(params);
     };
 
-    console.log(weaponsParams);
+    return weaponsParams;
   }
 
   // Game generation ---------------------------------------------------------------------------------------
@@ -211,7 +211,7 @@ $(document).ready(function(){
 
     let players = insertAllPlayers();
     setFightersOnField(players);
-    setWeaponsOnField()
+    let weapons = setWeaponsOnField();
   }
   
   // End Functions

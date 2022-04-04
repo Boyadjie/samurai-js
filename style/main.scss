@@ -23,7 +23,7 @@ body {
   font-size: 10px;
 
   &.game {
-    background: url('./../img/japan_back.jpeg');
+    background: url('./../img/env/japan_back.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
   }
@@ -91,31 +91,31 @@ body {
           background: rgba(255, 0, 0, 0.459);
 
           &.tree {
-            background: url('./../img/tree.jpg');
+            background: url('./../img/env/tree.jpg');
             background-size: cover;
             background-repeat: no-repeat;
           }
 
           &.rock {
-            background: url('./../img/rock.jpg');
+            background: url('./../img/env/rock.jpg');
             background-size: cover;
             background-repeat: no-repeat;
           }
 
           &.floor {
-            background: url('./../img/grass.jpg');
+            background: url('./../img/env/grass.jpg');
             background-size: cover;
             background-repeat: no-repeat;
           }
 
           &.noukon {
             &-l {
-              background: url(./../img/noukon-l.png), url('./../img/grass.jpg');
+              background: url(./../img/fighters/noukon-l.png), url('./../img/env/grass.jpg');
               background-size: cover;
               background-repeat: no-repeat;
             }
             &-r {
-              background: url(./../img/noukon-r.png), url('./../img/grass.jpg');
+              background: url(./../img/fighters/noukon-r.png), url('./../img/env/grass.jpg');
               background-size: cover;
               background-repeat: no-repeat;
             }
@@ -123,26 +123,45 @@ body {
 
           &.akai {
             &-l {
-              background: url(./../img/akai-l.png), url('./../img/grass.jpg');
+              background: url(./../img/fighters/akai-l.png), url('./../img/env/grass.jpg');
               background-size: cover;
               background-repeat: no-repeat;
             }
             &-r {
-              background: url(./../img/akai-r.png), url('./../img/grass.jpg');
+              background: url(./../img/fighters/akai-r.png), url('./../img/env/grass.jpg');
               background-size: cover;
               background-repeat: no-repeat;
             }
           }
 
           &.weapon {
-            background: red;
+            &.katana {
+              background: url(./../img/weapons/katana.png), url('./../img/env/grass.jpg');
+              background-size: cover;
+              background-repeat: no-repeat;
+            }
+            &.kusari {
+              background: url(./../img/weapons/kusarigama.png), url('./../img/env/grass.jpg');
+              background-size: cover;
+              background-repeat: no-repeat;
+            }
+            &.sword1 {
+              background: url(./../img/weapons/sword1.png), url('./../img/env/grass.jpg');
+              background-size: cover;
+              background-repeat: no-repeat;
+            }
+            &.sword2 {
+              background: url(./../img/weapons/sword2.png), url('./../img/env/grass.jpg');
+              background-size: cover;
+              background-repeat: no-repeat;
+            }
           }
         }
       }
     }
 
     .player {
-      background: url('./../img/paper.jpeg');
+      background: url('./../img/env/paper.jpeg');
       background-size: 100% 100%;
       background-repeat: no-repeat;
       width: 300px;
@@ -183,7 +202,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: url('./../img/japan_back.jpeg');
+    background: url('./../img/env/japan_back.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
 
@@ -245,7 +264,7 @@ body {
             }
       
             .selected img {
-              background: url(./../img/select.png);
+              background: url(./../img/env/select.png);
             }
       
             label > img {
