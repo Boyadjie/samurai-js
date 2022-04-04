@@ -3,47 +3,32 @@
   font-family: "Nigato";
   src: url(./../fonts/Niagato.ttf) format("truetype");
 }
-
 @font-face {
   font-family: "Tokyo";
   src: url(./../fonts/Tokyo.ttf) format("truetype");
 }
-
 @font-face {
   font-family: "TokyoB";
   src: url(./../fonts/TokyoBold.ttf) format("truetype");
 }
-
 body {
   position: relative;
   height: 100vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-family: "Nigato";
   font-size: 10px;
 }
-
 body.game {
   background: url("./../img/japan_back.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
 }
-
 body #back-btn {
   padding-bottom: 1rem;
 }
-
 body #back-btn a {
   font-size: 1.5rem;
   font-weight: bold;
@@ -52,13 +37,11 @@ body #back-btn a {
   position: relative;
   padding-left: 40px;
 }
-
 body #back-btn a:hover::before {
   left: 0;
 }
-
 body #back-btn a::before {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   width: 100%;
@@ -68,106 +51,75 @@ body #back-btn a::before {
   background: url(./../img/arrow.png);
   background-size: contain;
   background-repeat: no-repeat;
-  -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-
 body #main {
   outline: 5px solid black;
   border-radius: 10px;
   height: 650px;
   width: 1200px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
 }
-
 body #main #gameArea {
   outline: 5px solid black;
   height: 100%;
   width: 650px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   z-index: 1000;
 }
-
 body #main #gameArea .row {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  align-items: center;
+  justify-content: space-evenly;
 }
-
 body #main #gameArea .row .cell {
   width: 73px;
   height: 73px;
   background: rgba(255, 0, 0, 0.459);
 }
-
 body #main #gameArea .row .cell.tree {
   background: url("./../img/tree.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
-
 body #main #gameArea .row .cell.rock {
   background: url("./../img/rock.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
-
 body #main #gameArea .row .cell.floor {
   background: url("./../img/grass.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
-
 body #main #gameArea .row .cell.noukon-l {
   background: url(./../img/noukon-l.png), url("./../img/grass.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
-
 body #main #gameArea .row .cell.noukon-r {
   background: url(./../img/noukon-r.png), url("./../img/grass.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
-
 body #main #gameArea .row .cell.akai-l {
   background: url(./../img/akai-l.png), url("./../img/grass.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
-
 body #main #gameArea .row .cell.akai-r {
   background: url(./../img/akai-r.png), url("./../img/grass.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
-
+body #main #gameArea .row .cell.weapon {
+  background: red;
+}
 body #main .player {
   background: url("./../img/paper.jpeg");
   background-size: 100% 100%;
@@ -177,117 +129,70 @@ body #main .player {
   overflow: hidden;
   padding: 0 10px;
 }
-
 body #main .player .fighter-infos .card {
   border-bottom: 3px solid black;
 }
-
 body #main .player .fighter-infos .card .fighter-name {
   margin: 0;
   font-size: 2.5rem;
-  font-family: 'TokyoB';
+  font-family: "TokyoB";
   font-weight: bolder;
   text-align: center;
 }
-
 body #main .player .fighter-infos .infos p {
   font-size: 1.5rem;
 }
-
 body #main .player .fighter-infos .infos p span {
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
   font-size: 1.2rem;
   margin-left: 0.5rem;
 }
-
 body.home {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background: url("./../img/japan_back.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
 }
-
 body.home h1 {
   font-size: 5rem;
   font-family: "TokyoB";
   margin: 1rem;
 }
-
 body.home .container {
   background: white;
   padding: 20px 40px;
   border-radius: 25px;
-  -webkit-box-shadow: 0px 0px 15px #7a7a7a;
-          box-shadow: 0px 0px 15px #7a7a7a;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  box-shadow: 0px 0px 15px #7a7a7a;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
 body.home .container .params-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
   gap: 200px;
 }
-
 body.home .container .params-container .params {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
 body.home .container .params-container .params h2 {
   font-size: 3rem;
   margin: 0;
 }
-
 body.home .container .params-container .params .name {
   padding: 2rem 0;
 }
-
 body.home .container .params-container .params .name label {
   font-size: 1.5rem;
 }
-
 body.home .container .params-container .params .name input {
   border: none;
   border-bottom: 2px solid black;
@@ -297,25 +202,18 @@ body.home .container .params-container .params .name input {
   width: 230px;
   font-size: 1rem;
 }
-
 body.home .container .params-container .params .fighter-choice {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
-
 body.home .container .params-container .params .fighter-choice input[type=radio] {
   display: none;
 }
-
 body.home .container .params-container .params .fighter-choice .selected img {
   background: url(./../img/select.png);
 }
-
 body.home .container .params-container .params .fighter-choice label > img:hover {
   cursor: pointer;
 }
-
 body.home .container .play-btn {
   margin-top: 25px;
   padding: 5px 40px;
@@ -323,12 +221,11 @@ body.home .container .play-btn {
   border: 2px solid black;
   font-family: "Nigato";
   font-size: 1.5rem;
-  -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-
 body.home .container .play-btn:hover {
   cursor: pointer;
   padding: 5px 50px;
 }
+
 /*# sourceMappingURL=main.css.map */

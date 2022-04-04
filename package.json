@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "sass": "sass --watch ./style/main.scss:./style/main.css"
+    "sass": "sass --watch ./style/main.scss:./style/main.css",
+    "start": "npm run sass"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Boyadjie/samurai-js.git"
   },
-  "author": "",
+  "author": "Emeric Boyadjian",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Boyadjie/samurai-js/issues"

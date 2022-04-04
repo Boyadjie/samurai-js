@@ -1,6 +1,6 @@
   export default class Weapon {
     constructor(name, apCost, damages, speed) {
-      if (typeof name != "string" || Number.isInteger(apCost) == false || Number.isInteger(damages) == false) {
+      if (typeof name != "string" || Number.isInteger(apCost) == false || Number.isInteger(damages) == false || Number.isInteger(speed) == false) {
         throw new Error("Wrong arguments type set as parameters\n");
       }else {
         this.name = name

@@ -133,6 +133,10 @@ body {
               background-repeat: no-repeat;
             }
           }
+
+          &.weapon {
+            background: red;
+          }
         }
       }
     }
