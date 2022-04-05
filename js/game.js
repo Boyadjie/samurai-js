@@ -404,6 +404,7 @@ $(document).ready(function(){
 
     let weapons = setWeaponsOnField();
 
+    // il faut peut etre modifier showMovements. --> on click sur fighter { show movement }. dans show movement on retire le on click
     round(playerOne, playerTwo, playerOne);
   }
   
