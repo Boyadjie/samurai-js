@@ -131,6 +131,15 @@ $(document).ready(function(){
   }
 
   // Insert ---------------------------------------------------------------------------------------
+  function insertIds() {
+    let cells = $('.cell');
+
+    for (let i = 0; i < cells.length; i++) {
+      const e = jQuery(cells[i]);
+      e.attr('id', i);
+    }
+  }
+
   function insertOnePlayer(playerInfos, container) {
     let playerName = playerInfos[1];
     let imageName = playerInfos[2];
@@ -198,6 +207,9 @@ $(document).ready(function(){
         cell.addClass("floor");
       }
     }
+
+    // Add ids to cells
+    insertIds();
   }
 
   function setFightersOnField(players) {
@@ -327,9 +339,57 @@ $(document).ready(function(){
             setObstaclesDeadzone();
           }
         });
-
       }
     });
+
+    return moveCells;
+  }
+
+  function move(player, area) {
+    let cells = $('.cell');
+    let fighter = player.fighter;
+    let fighterCell = jQuery(cells.eq(fighter.position));
+    let fighterImgClass = `${fighter.name}-${player.side}`;
+
+    for(const cell of area) {
+      cell.on('click', (e) => {
+        e = jQuery(jQuery(e)[0].currentTarget);
+        e.addClass(`fighter ${fighterImgClass}`);
+        fighterCell.removeClass(`fighter ${fighterImgClass} move`);
+        fighter.setPosition(parseInt(e[0].id));
+
+        area.forEach((a) => {
+          a.removeClass('go-to');
+        });
+
+        return true;
+      });
+    }
+  }
+
+  // Rounds ---------------------------------------------------------------------------------------
+  function round(player1, player2, toPlay) {
+    if(toPlay == player1) {
+      console.log('Player 1, Your turn !');
+      let area = showMovements(player1);
+      let moved = move(player1, area);
+      if(moved){
+        round(player1, player2, player2);
+      }else {
+        console.log("Player haven't moved !");
+      }
+    }
+
+    if(toPlay == player2) {
+      console.log('Player 2, Your turn !');
+      let area = showMovements(player2);
+      let moved = move(player2, area);
+      if(moved){
+        round(player1, player2, player1);
+      }else {
+        console.log("Player haven't moved !");
+      }
+    }
   }
 
   // Game generation ---------------------------------------------------------------------------------------
@@ -344,7 +404,7 @@ $(document).ready(function(){
 
     let weapons = setWeaponsOnField();
 
-    showMovements(playerOne);
+    round(playerOne, playerTwo, playerOne);
   }
   
   // End Functions
