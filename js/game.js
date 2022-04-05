@@ -28,7 +28,15 @@ $(document).ready(function(){
 
   function checkClass(element) {
     if(element.hasClass("tree") == false && element.hasClass("rock") == false && element.hasClass("fighter") == false && element.hasClass("weapon") == false) {
-      return element
+      return element;
+    }else {
+      return false;
+    }
+  }
+
+  function checkObstacles(element) {
+    if(element.hasClass("tree") == false && element.hasClass("rock") == false) {
+      return element;
     }else {
       return false;
     }
@@ -57,6 +65,36 @@ $(document).ready(function(){
 
       return [playerOne, playerTwo];
     }
+  }
+
+  function getObstaclesIds() {
+    let cells = $('.cell');
+
+    let rocks = $('.rock');
+    let trees = $('.tree');
+    let obstacles = [];
+    let ids = [];
+
+    for(const tree of trees) {
+      obstacles.push(tree);
+    }
+    for(const rock of rocks) {
+      obstacles.push(rock);
+    }
+
+    for(const obstacle of obstacles) {
+      // console.log(obstacle);
+      let obId;
+      for (let i = 0; i < cells.length; i++) {
+        const cell = cells[i];
+        if(cell == obstacle){
+          obId = i;
+        }
+      }
+      ids.push(obId);
+    }
+
+    return ids;
   }
 
   // Create ---------------------------------------------------------------------------------------
@@ -203,47 +241,70 @@ $(document).ready(function(){
     return weaponsParams;
   }
 
-  // Movement ---------------------------------------------------------------------------------------
-  function getMovePosiotions(position) {
+  function setObstaclesDeadzone() {
     let cells = $('.cell');
+    let obIds = getObstaclesIds();
 
-    let left = [];
-    let right = []; 
-    let top = []; 
-    let bottom = [];
+    for(let obId of obIds) {
+      let deadZone = [jQuery(cells.eq(obId-1)),jQuery(cells.eq(obId+1)),jQuery(cells.eq(obId-9)),jQuery(cells.eq(obId+9))]
 
-    for (let i = 0; i < 80; i = i+9) {
-      left.push(jQuery(cells.eq(i)));
-    }
-    for (let j = 8; j < 80; j = j+9) {
-      right.push(jQuery(cells.eq(j)));
-    }
-    for (let k = 0; k < 8; k++) {
-      top.push(jQuery(cells.eq(k)));
-    }
-    for (let l = 72; l < 80; l++) {
-      bottom.push(jQuery(cells.eq(l)));
-    }
-
-    if(left.indexOf(position) != -1) {
-      return ['all but left'];
-    }else if(right.indexOf(position) != -1) {
-      return ['all but right'];
-    }else if(top.indexOf(position) != -1) {
-      return ['all but top'];
-    }else if(bottom.indexOf(position) != -1) {
-      return ['all but bottom'];
-    }else {
-      return [position+1, position+2, position-1, position-2, position+9, position+18, position-9, position-18];
+      for(const deadCell of deadZone) {
+        if(deadCell.hasClass('move')) {
+          deadZone.forEach((e) => {
+            e.removeClass('go-to');
+          });
+        }
+      }
     }
   }
 
-  function enableMovement(player) {
+  // Movement ---------------------------------------------------------------------------------------
+  function moveToParams(position) {
+    let moveTo = [];
+    moveTo['top'] = [position+9, position+18];
+    moveTo['bottom'] = [position-9, position-18];
+    moveTo['right'] = [position+1, position+2];
+    moveTo['left'] = [position-1, position-2];
+
+    return moveTo;
+  }
+
+  function getMovePositions(position) {
+    let moveTo = moveToParams(position);
+    let positions = [];
+
+    // side ---
+    let line = ((position)/9);
+    let maxLine = Math.trunc(((position)/9))+1;
+    let minLine = Math.trunc(line);
+
+    let moveSide = [moveTo['left'][0],moveTo['left'][1],moveTo['right'][0],moveTo['right'][1]];
+
+    for(const side of moveSide) {
+      if(((side)/9) < maxLine && ((side)/9) >= minLine) {
+        positions.push(side);
+      }
+    }
+
+    // top & bottom
+    let collumn = (((position)%9)+1);
+    let moveTopBottom = [moveTo['top'][0],moveTo['top'][1],moveTo['bottom'][0],moveTo['bottom'][1]];
+
+    for(const topBot of moveTopBottom) {
+      if(((topBot)/9) < 80 && ((topBot)/9) >= 0) {
+        positions.push(topBot);
+      }
+    }
+
+    return positions;
+  }
+
+  function showMovements(player) {
     let cells = $('.cell');
     let fighter = player.fighter;
     let fighterCell = jQuery(cells.eq(fighter.position));
 
-    let movePositions = getMovePosiotions(fighter.position);
+    let movePositions = getMovePositions(fighter.position);
     let moveCells = [];
 
     for(const position of movePositions) {
@@ -251,7 +312,6 @@ $(document).ready(function(){
     }
 
     fighterCell.on('click', (e) => {
-      console.log('coucou');
       const myPlayer = jQuery(e.currentTarget);
 
       if(myPlayer.hasClass('move')) {
@@ -262,8 +322,12 @@ $(document).ready(function(){
       }else {
         myPlayer.addClass('move');
         moveCells.forEach((e) => {
-          e.addClass('go-to');
+          if(checkObstacles(e) != false) {
+            e.addClass('go-to');
+            setObstaclesDeadzone();
+          }
         });
+
       }
     });
   }
@@ -280,7 +344,7 @@ $(document).ready(function(){
 
     let weapons = setWeaponsOnField();
 
-    enableMovement(playerOne);
+    showMovements(playerOne);
   }
   
   // End Functions

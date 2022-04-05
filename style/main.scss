@@ -113,6 +113,10 @@ body {
           &.go-to {
             position: relative;
 
+            &:hover {
+              cursor: pointer;
+            }
+
             &::after {
               content: '';
               position: absolute;

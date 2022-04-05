@@ -102,6 +102,9 @@ body #main #gameArea .row .cell.floor {
 body #main #gameArea .row .cell.go-to {
   position: relative;
 }
+body #main #gameArea .row .cell.go-to:hover {
+  cursor: pointer;
+}
 body #main #gameArea .row .cell.go-to::after {
   content: "";
   position: absolute;
