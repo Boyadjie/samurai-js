@@ -382,19 +382,37 @@ $(document).ready(function(){
   // }
 
   // Rounds ---------------------------------------------------------------------------------------
-  function round(player1, player2, toPlay) {
-    if(toPlay == player1) {
-      console.log('Player 1, Your turn !');
-      let moved = move(player1, player2, player1);
-      console.log(moved);
+  function getPlayerToPlay(round) {
+    let playerId = round % 2;
+
+		if (playerId == 0) {
+			playerId = 2;
     }
 
-    if(toPlay == player2) {
-      console.log('Player 2, Your turn !');
-      let moved = move(player1, player2, player2);
-      console.log(moved);
-    }
+    // roundNb -> playerId (désiré)      roundNb  %  2 = Result
+		//    1    ->    1                      1     %  2 =   1     
+    //    2    ->    2                      2     %  2 =   0     
+    //    3    ->    1                      3     %  2 =   1     
+		//    4    ->    2                      4     %  2 =   0     
+		//    5    ->    1                      5     %  2 =   1     
+		//    6    ->    2                      6     %  2 =   0 
+
+		return playerId;
   }
+
+  function gameLoop(round) {
+    round++;
+    let toPlay = getPlayerToPlay(round);
+    
+    console.log(toPlay);
+
+    let test = $('.fighter');
+    test.on('click', (e) => {
+      test.off();
+      gameLoop(round);
+    });
+  }
+
 
   // Game generation ---------------------------------------------------------------------------------------
   function createGame() {
@@ -408,7 +426,8 @@ $(document).ready(function(){
 
     let weapons = setWeaponsOnField();
 
-
+    let round = 0;
+    gameLoop(round);
     // round(playerOne, playerTwo, playerOne);
   }
   
