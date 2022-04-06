@@ -311,84 +311,88 @@ $(document).ready(function(){
     return positions;
   }
 
-  function showMovements(player) {
-    let cells = $('.cell');
-    let fighter = player.fighter;
-    let fighterCell = jQuery(cells.eq(fighter.position));
+  // function showMovements(player) {
+  //   let cells = $('.cell');
+  //   let fighter = player.fighter;
+  //   let fighterCell = jQuery(cells.eq(fighter.position));
 
-    let movePositions = getMovePositions(fighter.position);
-    let moveCells = [];
+  //   let movePositions = getMovePositions(fighter.position);
+  //   let moveCells = [];
 
-    for(const position of movePositions) {
-      moveCells.push(jQuery(cells.eq(position)));
-    }
+  //   for(const position of movePositions) {
+  //     moveCells.push(jQuery(cells.eq(position)));
+  //   }
 
-    fighterCell.on('click', (e) => {
-      const myPlayer = jQuery(e.currentTarget);
+  //   fighterCell.on('click', (e) => {
+  //     const myPlayer = jQuery(e.currentTarget);
 
-      if(myPlayer.hasClass('move')) {
-        myPlayer.removeClass('move');
-        moveCells.forEach((e) => {
-          e.removeClass('go-to');
-        });
-      }else {
-        myPlayer.addClass('move');
-        moveCells.forEach((e) => {
-          if(checkObstacles(e) != false) {
-            e.addClass('go-to');
-            setObstaclesDeadzone();
-          }
-        });
-      }
-    });
+  //     if(myPlayer.hasClass('move')) {
+  //       myPlayer.removeClass('move');
+  //       moveCells.forEach((e) => {
+  //         e.removeClass('go-to');
+  //       });
+  //     }else {
+  //       myPlayer.addClass('move');
+  //       moveCells.forEach((e) => {
+  //         if(checkObstacles(e) != false) {
+  //           e.addClass('go-to');
+  //           setObstaclesDeadzone();
+  //         }
+  //       });
+  //     }
+  //   });
 
-    return moveCells;
-  }
+  //   return moveCells;
+  // }
 
-  function move(player, area) {
-    let cells = $('.cell');
-    let fighter = player.fighter;
-    let fighterCell = jQuery(cells.eq(fighter.position));
-    let fighterImgClass = `${fighter.name}-${player.side}`;
+  // function moveDetails(e, fighter, fighterCell, fighterImgClass, area) {
+  //   e = jQuery(e[0]);
+  //   e.addClass(`fighter ${fighterImgClass}`);
+  //   fighterCell.removeClass(`fighter ${fighterImgClass} move`);
+  //   fighter.setPosition(parseInt(e[0].id));
 
-    for(const cell of area) {
-      cell.on('click', (e) => {
-        e = jQuery(jQuery(e)[0].currentTarget);
-        e.addClass(`fighter ${fighterImgClass}`);
-        fighterCell.removeClass(`fighter ${fighterImgClass} move`);
-        fighter.setPosition(parseInt(e[0].id));
+  //   area.forEach((a) => {
+  //     a.removeClass('go-to');
+  //   });
 
-        area.forEach((a) => {
-          a.removeClass('go-to');
-        });
+  //   e.off('click');
+  //   return true;
+  // }
 
-        return true;
-      });
-    }
-  }
+  // function move(player1, player2, toPlay) {
+  //   let cells = $('.cell');
+  //   let fighter = toPlay.fighter;
+  //   let fighterCell = jQuery(cells.eq(fighter.position));
+  //   let fighterImgClass = `${fighter.name}-${toPlay.side}`;
+  //   let area = showMovements(toPlay);
+
+  //   console.log(area);
+
+  //   if(toPlay == player1) {
+  //     for(const cell of area) {
+  //       cell.on('click', moveDetails(cell, fighter, fighterCell, fighterImgClass, area));
+  //     }
+  //     round(player1, player2, player2);
+  //   }else {
+  //     for(const cell of area) {
+  //       cell.on('click', moveDetails(cell, fighter, fighterCell, fighterImgClass, area));
+  //     }
+  //     round(player1, player2, player1);
+  //   }
+  // }
 
   // Rounds ---------------------------------------------------------------------------------------
   function round(player1, player2, toPlay) {
     if(toPlay == player1) {
       console.log('Player 1, Your turn !');
-      let area = showMovements(player1);
-      let moved = move(player1, area);
-      if(moved){
-        round(player1, player2, player2);
-      }else {
-        console.log("Player haven't moved !");
-      }
+      let moved = move(player1, player2, player1);
+      console.log(moved);
     }
 
     if(toPlay == player2) {
       console.log('Player 2, Your turn !');
-      let area = showMovements(player2);
-      let moved = move(player2, area);
-      if(moved){
-        round(player1, player2, player1);
-      }else {
-        console.log("Player haven't moved !");
-      }
+      let moved = move(player1, player2, player2);
+      console.log(moved);
     }
   }
 
@@ -404,8 +408,8 @@ $(document).ready(function(){
 
     let weapons = setWeaponsOnField();
 
-    // il faut peut etre modifier showMovements. --> on click sur fighter { show movement }. dans show movement on retire le on click
-    round(playerOne, playerTwo, playerOne);
+
+    // round(playerOne, playerTwo, playerOne);
   }
   
   // End Functions
