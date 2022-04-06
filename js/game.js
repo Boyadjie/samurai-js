@@ -261,7 +261,7 @@ $(document).ready(function(){
       let deadZone = [jQuery(cells.eq(obId-1)),jQuery(cells.eq(obId+1)),jQuery(cells.eq(obId-9)),jQuery(cells.eq(obId+9))]
 
       for(const deadCell of deadZone) {
-        if(deadCell.hasClass('move')) {
+        if(deadCell.hasClass('toMove')) {
           deadZone.forEach((e) => {
             e.removeClass('go-to');
           });
@@ -381,6 +381,68 @@ $(document).ready(function(){
   //   }
   // }
 
+  function showMovementsPossibility(currentPosition, fighterCell) {
+    let cells = $('.cell');
+    let movePositions = getMovePositions(currentPosition);
+    let moveCells = [];
+
+    for(const position of movePositions) {
+      moveCells.push(jQuery(cells.eq(position)));
+    }
+
+    if(fighterCell.hasClass('toMove')) {
+      moveCells.forEach((e) => {
+        if(checkObstacles(e) != false) {
+          e.addClass('go-to');
+          setObstaclesDeadzone();
+        }
+      });
+      fighterCell.removeClass('toMove');
+    }else {
+      return false;
+    }
+
+    return moveCells;
+  }
+
+  function getMovementsPossibilities(fighterCell) {
+    fighterCell.on('click', (cell) => {
+      cell = jQuery(cell.currentTarget);
+      cell.off();
+
+      let currentPosition = parseInt(cell.attr('id'));
+      let possibilities = showMovementsPossibility(currentPosition, cell);
+
+      // console.log(possibilities); // affiche bien les possibilités
+      return possibilities;
+    });
+  }
+
+  // function getTarget(possibilities) {
+  //   for(const target of possibilities) {
+  //     target.on('click', (target) => {
+  //       target = jQuery(target);
+  //       target.off();
+
+  //       return target;
+  //     });
+  //   }
+  // }
+
+  function move(fighter) {
+    let cells = $('.cell');
+    let fighterCell = jQuery(cells.eq(fighter.position));
+    let target;
+
+    fighterCell.addClass('toMove');
+
+    let possibilities = getMovementsPossibilities(fighterCell);
+    console.log(possibilities); // n'affiche pas les possibilités --> undefined
+
+    // target = getTarget(possibilities);
+
+  }
+
   // Rounds ---------------------------------------------------------------------------------------
   function getPlayerToPlay(round) {
     let playerId = round % 2;
@@ -400,16 +462,27 @@ $(document).ready(function(){
 		return playerId;
   }
 
-  function gameLoop(round) {
+  function gameLoop(round, players) {
     round++;
+    let player1 = players[0];
+    let player2 = players[1];
+
     let toPlay = getPlayerToPlay(round);
+    toPlay = `player${toPlay}`;
     
-    console.log(toPlay);
+    if(toPlay === 'player1'){
+      toPlay = player1;
+    }else {
+      toPlay = player2;
+    }
+
+    let fighter = toPlay.fighter;
+    move(fighter);
 
     let test = $('.fighter');
     test.on('click', (e) => {
       test.off();
-      gameLoop(round);
+      gameLoop(round, players);
     });
   }
 
@@ -421,13 +494,11 @@ $(document).ready(function(){
 
     let players = insertAllPlayers();
     setFightersOnField(players);
-    let playerOne = players[0];
-    let playerTwo = players[1];
 
     let weapons = setWeaponsOnField();
 
     let round = 0;
-    gameLoop(round);
+    gameLoop(round, players);
     // round(playerOne, playerTwo, playerOne);
   }
   
