@@ -406,41 +406,44 @@ $(document).ready(function(){
   }
 
   function getMovementsPossibilities(fighterCell) {
+    let currentPosition = parseInt(fighterCell.attr('id'));
+    let possibilities = showMovementsPossibility(currentPosition, fighterCell);
+
+    return possibilities;
+  }
+
+  function goToTraget(possibilities, fighter, side, fighterCell) {
+    let fighterImgClass = `${fighter.name}-${side}`;
+    let targets = $('.go-to');
+
+    targets.on('click', (target) => {
+      target = jQuery(target.currentTarget);
+      targets.off();
+
+      possibilities.forEach((e) => {
+        e.removeClass('go-to');
+      });
+
+      target.addClass(`fighter ${fighterImgClass}`);
+      fighterCell.removeClass(`fighter ${fighterImgClass}`);
+      fighter.setPosition(parseInt(target.attr('id')));
+    });
+  }
+
+  function move(fighter, side) {
+    let cells = $('.cell');
+    let fighterCell = jQuery(cells.eq(fighter.position));
+    fighterCell.addClass('toMove');
+
     fighterCell.on('click', (cell) => {
       cell = jQuery(cell.currentTarget);
       cell.off();
 
-      let currentPosition = parseInt(cell.attr('id'));
-      let possibilities = showMovementsPossibility(currentPosition, cell);
-
-      // console.log(possibilities); // affiche bien les possibilités
-      return possibilities;
+      let possibilities = getMovementsPossibilities(cell);
+      
+      goToTraget(possibilities, fighter, side, fighterCell);
+      possibilities = [];
     });
-  }
-
-  // function getTarget(possibilities) {
-  //   for(const target of possibilities) {
-  //     target.on('click', (target) => {
-  //       target = jQuery(target);
-  //       target.off();
-
-  //       return target;
-  //     });
-  //   }
-  // }
-
-  function move(fighter) {
-    let cells = $('.cell');
-    let fighterCell = jQuery(cells.eq(fighter.position));
-    let target;
-
-    fighterCell.addClass('toMove');
-
-    let possibilities = getMovementsPossibilities(fighterCell);
-    console.log(possibilities); // n'affiche pas les possibilités --> undefined
-
-    // target = getTarget(possibilities);
-
   }
 
   // Rounds ---------------------------------------------------------------------------------------
@@ -477,7 +480,7 @@ $(document).ready(function(){
     }
 
     let fighter = toPlay.fighter;
-    move(fighter);
+    move(fighter, toPlay.side);
 
     let test = $('.fighter');
     test.on('click', (e) => {
