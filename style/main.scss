@@ -66,15 +66,16 @@ body {
   #main {
     outline: 5px solid black;
     border-radius: 10px;
-    height: 650px;
+    height: auto;
     width: 1200px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 5px;
+    background: black;
 
     #gameArea {
-      outline: 5px solid black;
-      height: 100%;
+      height: 610px;
       width: 650px;
       display: flex;
       flex-direction: column;
@@ -86,10 +87,12 @@ body {
         display: flex;
         align-items: center;
         justify-content: space-evenly;
+        width: 100%;
+        height: 100%;
 
         .cell {
-          width: 73px;
-          height: 73px;
+          width: 100%;
+          height: 100%;
           background: rgba(255, 0, 0, 0.459);
 
           &.tree {
@@ -120,11 +123,16 @@ body {
             &::after {
               content: '';
               position: absolute;
-              width: 100%;
-              height: 100%;
-              top: 0;
-              left: 0;
-              background-color: rgba(255, 0, 0, 0.4);
+              width: 70%;
+              height: 70%;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              background: url(./../img/env/select.png), rgba(227, 227, 227, 0.5);
+              background-size: 50%;
+              background-repeat: no-repeat;
+              background-position: center;
+              border-radius: 25px;
             }
           }
 
@@ -135,7 +143,7 @@ body {
               background-repeat: no-repeat;
             }
             &.kusari {
-              background: url(./../img/weapons/kusarigama.png), url('./../img/env/grass.jpg');
+              background: url(./../img/weapons/kusari.png), url('./../img/env/grass.jpg');
               background-size: cover;
               background-repeat: no-repeat;
             }
@@ -223,14 +231,116 @@ body {
         }
 
         .infos {
-          p {
-            font-size: 1.5rem;
+          background: rgba(227, 227, 227, 0.8);
+          padding: 0.5rem;
+          margin-top: 1rem;
+          border-radius: 15px;
 
-            span {
-              font-family: 'Noto Sans', sans-serif;
-              font-size: 1.2rem;
-              margin-left: 0.5rem;
+          .player-name {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            width: max-content;
+            margin: 0 auto;
+            transform: translateX(-7%);
+
+            img {
+              width: 40px;
             }
+
+            p {
+              font-size: 2rem;
+              margin: 0;
+            }
+          }
+
+          .player-infos {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 1.2rem;
+            padding: 0;
+            margin: 0;
+
+            li {
+              display: flex;
+              justify-content: left;
+              align-items: center;
+              gap: 0.5rem;
+              width: 40%;
+              margin: 0 auto;
+
+              img {
+                width: 30px;
+              }
+
+              p {
+                font-size: 1rem;
+                margin: 0;
+              }
+            }
+          }
+
+          .weapon-holded {
+            font-family: 'Noto Sans', sans-serif;
+            padding: 0;
+            margin: 0;
+
+            .weapon-name {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              gap: 0.5rem;
+              width: max-content;
+              margin: 0 auto;
+
+              img {
+                width: 40px;
+              }
+
+              p {
+                font-size: 1.3rem;
+                margin: 0;
+              }
+            }
+
+            .weapon-infos {
+              font-size: 1rem;
+              padding: 0;
+              margin: 0;
+
+              li {
+                display: flex;
+                justify-content: left;
+                align-items: center;
+                gap: 0.5rem;
+                width: 40%;
+                margin: 0 auto;
+  
+                img {
+                  width: 30px;
+                }
+  
+                p {
+                  font-size: 1rem;
+                  margin: 0;
+                }
+              }
+            }
+          }
+        }
+
+        .to-play {
+          span {
+            display: block;
+            background: rgba(227, 227, 227, 0.8);
+            width: max-content;
+            margin: 0 auto;
+            margin-top: 0.5rem;
+            padding-inline: 2rem;
+            border-radius: 8px;
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 1rem;
+            text-align: center;
           }
         }
       }

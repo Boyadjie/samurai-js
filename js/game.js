@@ -149,8 +149,9 @@ $(document).ready(function(){
     let player = createPlayer(playerName, side);
     let fighter = createFighter(fighterName, 100, 50);
 
+    fighter.setDomContainer(container);
     player.setFighter(fighter);
-
+    
     container.html(`
     <div class='fighter-infos'>
       <div class='card'>
@@ -158,9 +159,35 @@ $(document).ready(function(){
         <p class='fighter-name ${fighterName}'>${fighterName}</p>
       </div>
       <div class='infos'>
-        <p class='player-name'>Player: <span>${playerName}</span></p>
-        <p class='player-hp'>Life points: <span>${fighter.hp} hp</span></p>
-        <p class='player-str'>Strength: <span>${fighter.strength} str</span></p>
+        <div class="player-name">
+          <img src="./img/icons/user.png" alt="Player icon" >
+          <p>${playerName}</p>
+        </div>
+
+        <ul class='player-infos'>
+          <li class="hp">
+            <img src="./img/icons/hp.png" alt="Health point icon">
+            <p>${fighter.hp}&nbsp;hp</p>
+          </li>
+          <li class="ap">
+            <img src="./img/icons/ap.png" alt="Attack point icon">
+            <p>${fighter.ap}&nbsp;ap</p>
+          </li>
+          <li class="str">
+            <img src="./img/icons/str.png" alt="Strenght icon">
+            <p>${fighter.strength}&nbsp;str</p>
+          </li>
+        </ul>
+        <div class="weapon-holded">
+          <div class="weapon-name">
+            <img src="./img/icons/emptyHanded.png" >
+            <p>No Weapon</p>
+          </div>
+
+          <ul class="weapon-infos"></ul>
+        </div>
+      </div>
+      <div class="to-play">
       </div>
     </div>`);
 
@@ -270,6 +297,35 @@ $(document).ready(function(){
     }
   }
 
+  function setHoldedWeapon(fighter) {
+    let playerInfoContainer = fighter.domContainer;
+    let weaponInfoContainer = playerInfoContainer.find('.weapon-holded');
+
+    let nameContainer = weaponInfoContainer.find('.weapon-name');
+    let infosContainer = weaponInfoContainer.find('.weapon-infos');
+    let weapon = fighter.weapon;
+
+    nameContainer.html(`
+      <img src="./img/weapons/${weapon.class}.png" alt="Weapon image" >
+      <p>${weapon.name}</p>
+    `);
+
+    infosContainer.html(`
+      <li class="ap-cost">
+        <img src="./img/icons/ap.png" alt="Attack point icon">
+        <p>-${weapon.apCost}&nbsp;ap</p>
+      </li>
+      <li class="damages">
+        <img src="./img/icons/dmg.png" alt="Attack damages icon">
+        <p>${weapon.damages}&nbsp;dmg</p>
+      </li>
+      <li class="speed">
+        <img src="./img/icons/speed.png" alt="Speed icon">
+        <p>${weapon.speed}&nbsp;speed</p>
+      </li>
+    `);
+  }
+
   // Movement ---------------------------------------------------------------------------------------
   function moveToParams(position) {
     let moveTo = [];
@@ -359,6 +415,8 @@ $(document).ready(function(){
       target.addClass(`fighter ${fighterImgClass}`);
       fighterCell.removeClass(`fighter ${fighterImgClass}`);
       fighter.setPosition(parseInt(target.attr('id')));
+
+      shwoToPlayParam(fighter);
     });
   }
 
@@ -411,6 +469,7 @@ $(document).ready(function(){
           changeWeaponCellClass(cell, getWeaponClass(cell));
           fighter.weapon = newWeapon;
           newWeapon.holder = fighter;
+          setHoldedWeapon(fighter);
         }else {
           alert(`this weapon is already holded by ${weapon.holder}`);
         }
@@ -422,6 +481,7 @@ $(document).ready(function(){
             fighter.weapon.holder = null;
             fighter.weapon = newWeapon;
             newWeapon.holder = fighter;
+            setHoldedWeapon(fighter);
           }else {
             alert(`this weapon is already holded by ${weapon.holder}`);
           }
@@ -460,6 +520,19 @@ $(document).ready(function(){
 		return playerId;
   }
 
+  function shwoToPlayParam(fighter, round) {
+    let playerInfoContainer = fighter.domContainer;
+    let paramContanier = playerInfoContainer.find('.to-play');
+    let containers = $('.fighter-infos .to-play');//To empty all the containers before showing the player to play in the right container
+
+    if(round == 1) {
+      paramContanier.html('<span>Your Turn !</span>');
+    }else {
+      containers.html('<span>Your Turn !</span>');
+      paramContanier.html('');
+    }
+  }
+
   function gameLoop(round, players, weapons) {
     round++;
     let player1 = players[0];
@@ -474,10 +547,23 @@ $(document).ready(function(){
     }else {
       toPlay = player2;
     }
+    //shwow player to play at 1st round
+    if(round == 1) {
+      toPlay = player1;
+      shwoToPlayParam(toPlay.fighter, round);
+    }
     // ------------------------
 
+    // Generate fight area ----
+    // ------------------------
+    
     let fighter = toPlay.fighter;
     move(fighter, toPlay.side, weapons);
+    
+    if(isCloseTo(player1.fighter, player2.fighter)){
+      createFightArena(player1.fighter, player2.fighter);
+      fight(player1.fighter, player2.fighter);
+    }
 
     // Game loop condition
     let test = $('.fighter');
@@ -501,6 +587,10 @@ $(document).ready(function(){
     let round = 0;
     gameLoop(round, players, weapons);
     // round(playerOne, playerTwo, playerOne);
+  }
+
+  function endGame(winner) {
+    // reset the game, show the winner and ask for rematch
   }
   
   // End Functions

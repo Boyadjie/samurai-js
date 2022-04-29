@@ -10,6 +10,10 @@
       this.weapon = null; // Instance de la classe Weapon
     }
 
+    setDomContainer(domContainer) {
+      this.domContainer = domContainer;
+    }
+
     // Set
     setWeapon(weapon) {
       if(typeof weapon === 'object' && weapon !== null && weapon instanceof Weapon) {

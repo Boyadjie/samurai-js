@@ -58,15 +58,16 @@ body #back-btn a::before {
 body #main {
   outline: 5px solid black;
   border-radius: 10px;
-  height: 650px;
+  height: auto;
   width: 1200px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 5px;
+  background: black;
 }
 body #main #gameArea {
-  outline: 5px solid black;
-  height: 100%;
+  height: 610px;
   width: 650px;
   display: flex;
   flex-direction: column;
@@ -78,10 +79,12 @@ body #main #gameArea .row {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
 }
 body #main #gameArea .row .cell {
-  width: 73px;
-  height: 73px;
+  width: 100%;
+  height: 100%;
   background: rgba(255, 0, 0, 0.459);
 }
 body #main #gameArea .row .cell.tree {
@@ -108,11 +111,16 @@ body #main #gameArea .row .cell.go-to:hover {
 body #main #gameArea .row .cell.go-to::after {
   content: "";
   position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: rgba(255, 0, 0, 0.4);
+  width: 70%;
+  height: 70%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: url(./../img/env/select.png), rgba(227, 227, 227, 0.5);
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 25px;
 }
 body #main #gameArea .row .cell.weapon.katana {
   background: url(./../img/weapons/katana.png), url("./../img/env/grass.jpg");
@@ -120,7 +128,7 @@ body #main #gameArea .row .cell.weapon.katana {
   background-repeat: no-repeat;
 }
 body #main #gameArea .row .cell.weapon.kusari {
-  background: url(./../img/weapons/kusarigama.png), url("./../img/env/grass.jpg");
+  background: url(./../img/weapons/kusari.png), url("./../img/env/grass.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -188,13 +196,100 @@ body #main .player .fighter-infos .card .fighter-name {
   font-weight: bolder;
   text-align: center;
 }
-body #main .player .fighter-infos .infos p {
-  font-size: 1.5rem;
+body #main .player .fighter-infos .infos {
+  background: rgba(227, 227, 227, 0.8);
+  padding: 0.5rem;
+  margin-top: 1rem;
+  border-radius: 15px;
 }
-body #main .player .fighter-infos .infos p span {
+body #main .player .fighter-infos .infos .player-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  width: max-content;
+  margin: 0 auto;
+  transform: translateX(-7%);
+}
+body #main .player .fighter-infos .infos .player-name img {
+  width: 40px;
+}
+body #main .player .fighter-infos .infos .player-name p {
+  font-size: 2rem;
+  margin: 0;
+}
+body #main .player .fighter-infos .infos .player-infos {
   font-family: "Noto Sans", sans-serif;
   font-size: 1.2rem;
-  margin-left: 0.5rem;
+  padding: 0;
+  margin: 0;
+}
+body #main .player .fighter-infos .infos .player-infos li {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 0.5rem;
+  width: 40%;
+  margin: 0 auto;
+}
+body #main .player .fighter-infos .infos .player-infos li img {
+  width: 30px;
+}
+body #main .player .fighter-infos .infos .player-infos li p {
+  font-size: 1rem;
+  margin: 0;
+}
+body #main .player .fighter-infos .infos .weapon-holded {
+  font-family: "Noto Sans", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+body #main .player .fighter-infos .infos .weapon-holded .weapon-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  width: max-content;
+  margin: 0 auto;
+}
+body #main .player .fighter-infos .infos .weapon-holded .weapon-name img {
+  width: 40px;
+}
+body #main .player .fighter-infos .infos .weapon-holded .weapon-name p {
+  font-size: 1.3rem;
+  margin: 0;
+}
+body #main .player .fighter-infos .infos .weapon-holded .weapon-infos {
+  font-size: 1rem;
+  padding: 0;
+  margin: 0;
+}
+body #main .player .fighter-infos .infos .weapon-holded .weapon-infos li {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 0.5rem;
+  width: 40%;
+  margin: 0 auto;
+}
+body #main .player .fighter-infos .infos .weapon-holded .weapon-infos li img {
+  width: 30px;
+}
+body #main .player .fighter-infos .infos .weapon-holded .weapon-infos li p {
+  font-size: 1rem;
+  margin: 0;
+}
+body #main .player .fighter-infos .to-play span {
+  display: block;
+  background: rgba(227, 227, 227, 0.8);
+  width: max-content;
+  margin: 0 auto;
+  margin-top: 0.5rem;
+  padding-inline: 2rem;
+  border-radius: 8px;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 1rem;
+  text-align: center;
 }
 body.home {
   display: flex;
