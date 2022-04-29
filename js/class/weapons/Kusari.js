@@ -8,5 +8,7 @@ import Weapon from './../Weapons.js';
       this.apCost = 5;
       this.damages = 15;
       this.speed = 10;
+
+      this.class = 'kusari';
     }
   }

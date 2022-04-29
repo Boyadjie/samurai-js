@@ -311,76 +311,6 @@ $(document).ready(function(){
     return positions;
   }
 
-  // function showMovements(player) {
-  //   let cells = $('.cell');
-  //   let fighter = player.fighter;
-  //   let fighterCell = jQuery(cells.eq(fighter.position));
-
-  //   let movePositions = getMovePositions(fighter.position);
-  //   let moveCells = [];
-
-  //   for(const position of movePositions) {
-  //     moveCells.push(jQuery(cells.eq(position)));
-  //   }
-
-  //   fighterCell.on('click', (e) => {
-  //     const myPlayer = jQuery(e.currentTarget);
-
-  //     if(myPlayer.hasClass('move')) {
-  //       myPlayer.removeClass('move');
-  //       moveCells.forEach((e) => {
-  //         e.removeClass('go-to');
-  //       });
-  //     }else {
-  //       myPlayer.addClass('move');
-  //       moveCells.forEach((e) => {
-  //         if(checkObstacles(e) != false) {
-  //           e.addClass('go-to');
-  //           setObstaclesDeadzone();
-  //         }
-  //       });
-  //     }
-  //   });
-
-  //   return moveCells;
-  // }
-
-  // function moveDetails(e, fighter, fighterCell, fighterImgClass, area) {
-  //   e = jQuery(e[0]);
-  //   e.addClass(`fighter ${fighterImgClass}`);
-  //   fighterCell.removeClass(`fighter ${fighterImgClass} move`);
-  //   fighter.setPosition(parseInt(e[0].id));
-
-  //   area.forEach((a) => {
-  //     a.removeClass('go-to');
-  //   });
-
-  //   e.off('click');
-  //   return true;
-  // }
-
-  // function move(player1, player2, toPlay) {
-  //   let cells = $('.cell');
-  //   let fighter = toPlay.fighter;
-  //   let fighterCell = jQuery(cells.eq(fighter.position));
-  //   let fighterImgClass = `${fighter.name}-${toPlay.side}`;
-  //   let area = showMovements(toPlay);
-
-  //   console.log(area);
-
-  //   if(toPlay == player1) {
-  //     for(const cell of area) {
-  //       cell.on('click', moveDetails(cell, fighter, fighterCell, fighterImgClass, area));
-  //     }
-  //     round(player1, player2, player2);
-  //   }else {
-  //     for(const cell of area) {
-  //       cell.on('click', moveDetails(cell, fighter, fighterCell, fighterImgClass, area));
-  //     }
-  //     round(player1, player2, player1);
-  //   }
-  // }
-
   function showMovementsPossibility(currentPosition, fighterCell) {
     let cells = $('.cell');
     let movePositions = getMovePositions(currentPosition);
@@ -412,7 +342,7 @@ $(document).ready(function(){
     return possibilities;
   }
 
-  function goToTraget(possibilities, fighter, side, fighterCell) {
+  function goToTraget(possibilities, fighter, side, fighterCell, weapons) {
     let fighterImgClass = `${fighter.name}-${side}`;
     let targets = $('.go-to');
 
@@ -424,13 +354,15 @@ $(document).ready(function(){
         e.removeClass('go-to');
       });
 
+      takeWeapon(fighter, target, weapons);
+
       target.addClass(`fighter ${fighterImgClass}`);
       fighterCell.removeClass(`fighter ${fighterImgClass}`);
       fighter.setPosition(parseInt(target.attr('id')));
     });
   }
 
-  function move(fighter, side) {
+  function move(fighter, side, weapons) {
     let cells = $('.cell');
     let fighterCell = jQuery(cells.eq(fighter.position));
     fighterCell.addClass('toMove');
@@ -441,9 +373,72 @@ $(document).ready(function(){
 
       let possibilities = getMovementsPossibilities(cell);
       
-      goToTraget(possibilities, fighter, side, fighterCell);
+      goToTraget(possibilities, fighter, side, fighterCell, weapons);
       possibilities = [];
     });
+  }
+
+  // Weapons management ---------------------------------------------------------------------------------------
+
+  function getWeaponClass(cell) {
+    if(cell.hasClass('katana')) {
+      return 'katana';
+    }else if(cell.hasClass('kusari')) {
+      return 'kusari';
+    }else if(cell.hasClass('sword1')) {
+      return 'sword1';
+    }else if(cell.hasClass('sword2')) {
+      return 'sword2';
+    }
+  }
+
+  function checkWeapon(cell, weapons) {
+    if(cell.hasClass('weapon')) {
+      let weaponName = getWeaponClass(cell);
+      let weapon = weapons[weaponName];
+
+      return weapon;
+    }else {
+      return false;
+    }
+  }
+
+  function takeWeapon(fighter, cell, weapons) {
+    let newWeapon = checkWeapon(cell, weapons);
+    if(newWeapon != false) {
+      if(fighter.weapon == null) {
+        if(newWeapon.holder == null) {
+          changeWeaponCellClass(cell, getWeaponClass(cell));
+          fighter.weapon = newWeapon;
+          newWeapon.holder = fighter;
+        }else {
+          alert(`this weapon is already holded by ${weapon.holder}`);
+        }
+      }else {
+        // fighter already have a weapon
+        if(confirm(`You will DROP ${fighter.weapon.name} to TAKE ${newWeapon.name}`)) {
+          if(newWeapon.holder == null) {
+            changeWeaponCellClass(cell, newWeapon.class, fighter.weapon.class);
+            fighter.weapon.holder = null;
+            fighter.weapon = newWeapon;
+            newWeapon.holder = fighter;
+          }else {
+            alert(`this weapon is already holded by ${weapon.holder}`);
+          }
+        }
+        // replace it by the new one (ask with an alert ?)
+      }
+    }
+  }
+
+  function changeWeaponCellClass(cell, classToReplace, newClass = null) {
+    if(newClass == null) {
+      cell.removeClass(`weapon ${classToReplace}`);
+    }else {
+      console.log(newClass);
+      cell.addClass(newClass);
+      cell.removeClass(classToReplace);
+    }
   }
 
   // Rounds ---------------------------------------------------------------------------------------
@@ -465,11 +460,12 @@ $(document).ready(function(){
 		return playerId;
   }
 
-  function gameLoop(round, players) {
+  function gameLoop(round, players, weapons) {
     round++;
     let player1 = players[0];
     let player2 = players[1];
 
+    // Get player to play ----
     let toPlay = getPlayerToPlay(round);
     toPlay = `player${toPlay}`;
     
@@ -478,14 +474,16 @@ $(document).ready(function(){
     }else {
       toPlay = player2;
     }
+    // ------------------------
 
     let fighter = toPlay.fighter;
-    move(fighter, toPlay.side);
+    move(fighter, toPlay.side, weapons);
 
+    // Game loop condition
     let test = $('.fighter');
     test.on('click', (e) => {
       test.off();
-      gameLoop(round, players);
+      gameLoop(round, players, weapons);
     });
   }
 
@@ -501,7 +499,7 @@ $(document).ready(function(){
     let weapons = setWeaponsOnField();
 
     let round = 0;
-    gameLoop(round, players);
+    gameLoop(round, players, weapons);
     // round(playerOne, playerTwo, playerOne);
   }
   

@@ -128,6 +128,29 @@ body {
             }
           }
 
+          &.weapon {
+            &.katana {
+              background: url(./../img/weapons/katana.png), url('./../img/env/grass.jpg');
+              background-size: cover;
+              background-repeat: no-repeat;
+            }
+            &.kusari {
+              background: url(./../img/weapons/kusarigama.png), url('./../img/env/grass.jpg');
+              background-size: cover;
+              background-repeat: no-repeat;
+            }
+            &.sword1 {
+              background: url(./../img/weapons/sword1.png), url('./../img/env/grass.jpg');
+              background-size: cover;
+              background-repeat: no-repeat;
+            }
+            &.sword2 {
+              background: url(./../img/weapons/sword2.png), url('./../img/env/grass.jpg');
+              background-size: cover;
+              background-repeat: no-repeat;
+            }
+          }
+
           &.fighter {
             &.move {
               position: relative;
@@ -171,30 +194,6 @@ body {
                 background-size: cover;
                 background-repeat: no-repeat;
               }
-            }
-          }
-
-
-          &.weapon {
-            &.katana {
-              background: url(./../img/weapons/katana.png), url('./../img/env/grass.jpg');
-              background-size: cover;
-              background-repeat: no-repeat;
-            }
-            &.kusari {
-              background: url(./../img/weapons/kusarigama.png), url('./../img/env/grass.jpg');
-              background-size: cover;
-              background-repeat: no-repeat;
-            }
-            &.sword1 {
-              background: url(./../img/weapons/sword1.png), url('./../img/env/grass.jpg');
-              background-size: cover;
-              background-repeat: no-repeat;
-            }
-            &.sword2 {
-              background: url(./../img/weapons/sword2.png), url('./../img/env/grass.jpg');
-              background-size: cover;
-              background-repeat: no-repeat;
             }
           }
         }

@@ -8,5 +8,7 @@ import Weapon from './../Weapons.js';
       this.apCost = 5;
       this.damages = 20;
       this.speed = 8;
+
+      this.class = 'sword1';
     }
   }

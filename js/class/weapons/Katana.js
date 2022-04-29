@@ -8,5 +8,7 @@ import Weapon from './../Weapons.js';
       this.apCost = 10;
       this.damages = 40;
       this.speed = 4;
+
+      this.class = 'katana';
     }
   }

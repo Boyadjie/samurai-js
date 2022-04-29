@@ -114,6 +114,26 @@ body #main #gameArea .row .cell.go-to::after {
   left: 0;
   background-color: rgba(255, 0, 0, 0.4);
 }
+body #main #gameArea .row .cell.weapon.katana {
+  background: url(./../img/weapons/katana.png), url("./../img/env/grass.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+body #main #gameArea .row .cell.weapon.kusari {
+  background: url(./../img/weapons/kusarigama.png), url("./../img/env/grass.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+body #main #gameArea .row .cell.weapon.sword1 {
+  background: url(./../img/weapons/sword1.png), url("./../img/env/grass.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+body #main #gameArea .row .cell.weapon.sword2 {
+  background: url(./../img/weapons/sword2.png), url("./../img/env/grass.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 body #main #gameArea .row .cell.fighter.move {
   position: relative;
 }
@@ -146,26 +166,6 @@ body #main #gameArea .row .cell.fighter.akai-l {
 }
 body #main #gameArea .row .cell.fighter.akai-r {
   background: url(./../img/fighters/akai-r.png), url("./../img/env/grass.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-body #main #gameArea .row .cell.weapon.katana {
-  background: url(./../img/weapons/katana.png), url("./../img/env/grass.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-body #main #gameArea .row .cell.weapon.kusari {
-  background: url(./../img/weapons/kusarigama.png), url("./../img/env/grass.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-body #main #gameArea .row .cell.weapon.sword1 {
-  background: url(./../img/weapons/sword1.png), url("./../img/env/grass.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-body #main #gameArea .row .cell.weapon.sword2 {
-  background: url(./../img/weapons/sword2.png), url("./../img/env/grass.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
