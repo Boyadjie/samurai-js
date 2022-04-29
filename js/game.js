@@ -398,9 +398,11 @@ $(document).ready(function(){
     return possibilities;
   }
 
-  function goToTraget(possibilities, fighter, side, fighterCell, weapons) {
+  function goToTraget(possibilities, fighter, side, fighterCell, weapons, players) {
     let fighterImgClass = `${fighter.name}-${side}`;
     let targets = $('.go-to');
+    let player1 = players[0];
+    let player2 = players[1];
 
     targets.on('click', (target) => {
       target = jQuery(target.currentTarget);
@@ -417,10 +419,15 @@ $(document).ready(function(){
       fighter.setPosition(parseInt(target.attr('id')));
 
       shwoToPlayParam(fighter);
+
+      if(isCloseTo(player1.fighter, player2.fighter)){
+        createFightArena(player1.fighter, player2.fighter);
+        fight(player1.fighter, player2.fighter);
+      }
     });
   }
 
-  function move(fighter, side, weapons) {
+  function move(fighter, side, weapons, players) {
     let cells = $('.cell');
     let fighterCell = jQuery(cells.eq(fighter.position));
     fighterCell.addClass('toMove');
@@ -431,7 +438,7 @@ $(document).ready(function(){
 
       let possibilities = getMovementsPossibilities(cell);
       
-      goToTraget(possibilities, fighter, side, fighterCell, weapons);
+      goToTraget(possibilities, fighter, side, fighterCell, weapons, players);
       possibilities = [];
     });
   }
@@ -501,6 +508,29 @@ $(document).ready(function(){
     }
   }
 
+  
+  // Init Fight ---------------------------------------------------------------------------------------
+  function isCloseTo(fighter1, fighter2) {
+    let p1 = fighter1.position;
+    let p2 = fighter2.position;
+
+    console.log(p1,p2);
+    if(p1 == p2 || (p1+1) == p2 || (p1-1) == p2 || (p1+9) == p2 || (p1-9) == p2){
+      return true;
+    }else {
+      return false;
+    }
+  }
+
+  function createFightArena(fighter1, fighter2) {
+    console.log('fighhhhhtttttt !!!!!!!');
+  }
+
+  function fight(fighter1, fighter2) {
+
+  }
+
+
   // Rounds ---------------------------------------------------------------------------------------
   function getPlayerToPlay(round) {
     let playerId = round % 2;
@@ -558,12 +588,7 @@ $(document).ready(function(){
     // ------------------------
     
     let fighter = toPlay.fighter;
-    move(fighter, toPlay.side, weapons);
-    
-    if(isCloseTo(player1.fighter, player2.fighter)){
-      createFightArena(player1.fighter, player2.fighter);
-      fight(player1.fighter, player2.fighter);
-    }
+    move(fighter, toPlay.side, weapons, players);
 
     // Game loop condition
     let test = $('.fighter');
@@ -589,7 +614,7 @@ $(document).ready(function(){
     // round(playerOne, playerTwo, playerOne);
   }
 
-  function endGame(winner) {
+  function endGame(player1, player2, winner) {
     // reset the game, show the winner and ask for rematch
   }
   

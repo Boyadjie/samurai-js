@@ -6,7 +6,6 @@
       this.hp = hp;
       this.strength = strength;
       this.ap = 100;
-      this.xp = 0; // Toujours 0 au début
       this.weapon = null; // Instance de la classe Weapon
     }
 
@@ -49,9 +48,7 @@
           console.log(`${target.name} have ${target.hp} hp left.\n`);
         } else {
           target.hp = 0;
-          const bonusXP = 10;
-          console.log(`${this.name} killed ${target.name} ! +${bonusXP} xp.\n`);
-          this.xp += bonusXP;
+          console.log(`${this.name} killed ${target.name} !\n`);
         }
       } else {
         console.log(`${this.name} is dead, he cant attack.\n`);
@@ -60,6 +57,6 @@
 
     // Renvoie la description du personnage
     describe() {
-      return `${this.name} have ${this.hp} health point, a strength of ${this.strength} and ${this.xp} xp.\n`;
+      return `${this.name} have ${this.hp} health point and a strength of ${this.strength}.\n`;
     }
   }
